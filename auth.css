@@ -1,0 +1,126 @@
+* {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+
+/* header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: .2rem 2rem;
+}
+
+header h1 {
+    color: #170ced;
+} */
+
+main {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+h1 {
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.form-container h1 span {
+    color: #170ced;
+}
+
+.form-container p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 32%;
+    height: 100%;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container h2,
+.form-container span,
+.form-container p {
+    width: 100%;
+}
+
+.form-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 2.4rem;
+}
+
+.form-container form div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.form-container form div label {
+    color: #555;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-left: 0.1rem;
+}
+
+.form-container form input {
+    height: 42px;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.form-container form button {
+    padding: 0.65rem;
+    border: none;
+    border-radius: 9999px;
+    background-color: #170ced;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-container .change-page {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+
+.form-container .change-page a {
+    color: #170ced;
+}
+
+.form-container form .hr {
+    background-color: #ccc;
+    width: 100%;
+    height: 1px;
+    margin-top: 1.5rem;
+}
+
+.img {
+    background-image: url('image.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    max-width: 90%;
+    height: 100%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
