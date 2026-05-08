@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - KLSystem</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><a href="#">Imóveis</a></li>
+                <li><a href="#">Inquilinos</a></li>
+                <li><a href="#">Contratos</a></li>
+                <li><a href="#">Controle de Pagamentos</a></li>
+                <li class="profile"><a href="#">Meu Perfil</a></li>
+                <li class="logout"><a href="../index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Visão Geral</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-cards">
+                <div class="card bg-blue">
+                    <div class="card-info">
+                        <h3>Imóveis Vagos</h3>
+                        <p class="number">12</p>
+                        <span class="detail">Disponíveis para locação</span>
+                    </div>
+                </div>
+                
+                <div class="card bg-green">
+                    <div class="card-info">
+                        <h3>Imóveis Alugados</h3>
+                        <p class="number">45</p>
+                        <span class="detail">Ocupados atualmente</span>
+                    </div>
+                </div>
+
+                <div class="card bg-orange">
+                    <div class="card-info">
+                        <h3>Pagamentos Pendentes</h3>
+                        <p class="number">8</p>
+                        <span class="detail">Vencimentos neste mês</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <h3>Últimos Pagamentos Registrados</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Inquilino</th>
+                                <th>Imóvel</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>João Silva</td>
+                                <td>Apto 402 - Centro</td>
+                                <td>R$ 1.500,00</td>
+                                <td><span class="badge success">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Maria Souza</td>
+                                <td>Casa 12 - Zona Sul</td>
+                                <td>R$ 2.300,00</td>
+                                <td><span class="badge success">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Pereira</td>
+                                <td>Apto 101 - Norte</td>
+                                <td>R$ 1.200,00</td>
+                                <td><span class="badge warning">Atrasado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Fernanda Lima</td>
+                                <td>Sala Comercial 05</td>
+                                <td>R$ 3.000,00</td>
+                                <td><span class="badge success">Pago</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="side-panel">
+                    <h3>Atividade Recente</h3>
+                    <ul class="activity-list">
+                        <li>Novo contrato assinado: <strong>Apto 205</strong></li>
+                        <li>Imóvel liberado: <strong>Casa 08</strong></li>
+                        <li>Inquilino atualizado: <strong>Roberto Alves</strong></li>
+                        <li>Fechamento do mês concluído.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
