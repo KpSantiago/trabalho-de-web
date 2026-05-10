@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pagamento - KLSystem</title>
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/pagamentos.css">
+    <link rel="stylesheet" href="../css/pagamento.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#">Imóveis</a></li>
+                <li><a href="#">Inquilinos</a></li>
+                <li><a href="#">Contratos</a></li>
+                <li><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="#">Meu Perfil</a></li>
+                <li class="logout"><a href="../index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Detalhes do Pagamento</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="payment-header">
+                        <a href="pagamentos.html" class="btn-back">← Voltar</a>
+                        <h3>Informações do Pagamento</h3>
+                    </div>
+
+                    <div class="payment-info-card">
+                        <div class="info-section">
+                            <h4>Dados do Inquilino</h4>
+                            <div class="info-row">
+                                <span class="label">Nome:</span>
+                                <span class="value">João Silva</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">CPF:</span>
+                                <span class="value">123.456.789-00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Telefone:</span>
+                                <span class="value">(11) 99999-9999</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Dados do Imóvel</h4>
+                            <div class="info-row">
+                                <span class="label">Imóvel:</span>
+                                <span class="value">Apto 402 - Centro</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Endereço:</span>
+                                <span class="value">Rua das Flores, 402</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Dados do Pagamento</h4>
+                            <div class="info-row">
+                                <span class="label">Parcela:</span>
+                                <span class="value">01/12</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Vencimento:</span>
+                                <span class="value">15/01/2026</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Valor Original:</span>
+                                <span class="value">R$ 1.500,00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Multa:</span>
+                                <span class="value">R$ 30,00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Juros:</span>
+                                <span class="value">R$ 18,00</span>
+                            </div>
+                            <div class="info-row total">
+                                <span class="label">Valor Total:</span>
+                                <span class="value">R$ 1.548,00</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Status</h4>
+                            <span class="badge warning">Atrasado</span>
+                            <p class="days-late">15 dias de atraso</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-actions">
+                        <button class="btn btn-primary btn-confirm">Confirmar Pagamento</button>
+                    </div>
+                </div>
+
+                <div class="side-panel">
+                    <h3>Informações</h3>
+                    <div class="info-box">
+                        <strong>Detalhes do Pagamento:</strong>
+                        <ul>
+                            <li>Este pagamento refere-se ao aluguel de Janeiro/2026</li>
+                            <li>O pagamento está atrasado desde 15/01/2026</li>
+                            <li>Encargos calculados automaticamente conforme configuração</li>
+                            <li>Após a confirmação, o status será atualizado para "Pago"</li>
+                        </ul>
+                    </div>
+
+                    <h3>Resumo dos Valores</h3>
+                    <div class="current-config">
+                        <div class="config-item">
+                            <span>Valor Original:</span>
+                            <strong>R$ 1.500,00</strong>
+                        </div>
+                        <div class="config-item">
+                            <span>Multa (2%):</span>
+                            <strong>R$ 30,00</strong>
+                        </div>
+                        <div class="config-item">
+                            <span>Juros (15 dias):</span>
+                            <strong>R$ 18,00</strong>
+                        </div>
+                        <div class="config-item">
+                            <span>Valor Total:</span>
+                            <strong>R$ 1.548,00</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

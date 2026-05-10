@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Pagamentos - KLSystem</title>
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/pagamentos.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#">Imóveis</a></li>
+                <li><a href="#">Inquilinos</a></li>
+                <li><a href="#">Contratos</a></li>
+                <li class="active"><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="#">Meu Perfil</a></li>
+                <li class="logout"><a href="../index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Controle de Pagamentos</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-cards">
+                <div class="card bg-blue">
+                    <div class="card-info">
+                        <h3>Pagamentos Pendentes</h3>
+                        <p class="number">23</p>
+                        <span class="detail">Aguardando liquidação</span>
+                    </div>
+                </div>
+
+                <div class="card bg-green">
+                    <div class="card-info">
+                        <h3>Pagos no Mês</h3>
+                        <p class="number">45</p>
+                        <span class="detail">Total arrecadado</span>
+                    </div>
+                </div>
+
+                <div class="card bg-orange">
+                    <div class="card-info">
+                        <h3>Em Atraso</h3>
+                        <p class="number">8</p>
+                        <span class="detail">Com encargos calculados</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Pagamentos Pendentes</h3>
+                        <a href="configuracao-encargos.html" class="btn btn-secondary btn-encargos">Configurar Encargos →</a>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parcela</th>
+                                    <th>Inquilino</th>
+                                    <th>Imóvel</th>
+                                    <th>Vencimento</th>
+                                    <th>Valor Original</th>
+                                    <th>Multa</th>
+                                    <th>Juros</th>
+                                    <th>Valor Total</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr onclick="window.location.href='pagamento.html'" style="cursor: pointer;">
+                                    <td>01/12</td>
+                                    <td>João Silva</td>
+                                    <td>Apto 402 - Centro</td>
+                                    <td>15/01/2026</td>
+                                    <td>R$ 1.500,00</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>R$ 1.500,00</td>
+                                    <td><span class="badge warning">Atrasado</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='pagamento.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='pagamento.html'" style="cursor: pointer;">
+                                    <td>02/12</td>
+                                    <td>Maria Souza</td>
+                                    <td>Casa 12 - Zona Sul</td>
+                                    <td>20/01/2026</td>
+                                    <td>R$ 2.300,00</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>R$ 2.300,00</td>
+                                    <td><span class="badge info">Pendente</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='pagamento.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='pagamento.html'" style="cursor: pointer;">
+                                    <td>01/12</td>
+                                    <td>Carlos Pereira</td>
+                                    <td>Apto 101 - Norte</td>
+                                    <td>10/01/2026</td>
+                                    <td>R$ 1.200,00</td>
+                                    <td>R$ 60,00</td>
+                                    <td>R$ 36,00</td>
+                                    <td>R$ 1.296,00</td>
+                                    <td><span class="badge warning">Atrasado</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='pagamento.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='pagamento.html'" style="cursor: pointer;">
+                                    <td>03/12</td>
+                                    <td>Fernanda Lima</td>
+                                    <td>Sala Comercial 05</td>
+                                    <td>25/01/2026</td>
+                                    <td>R$ 3.000,00</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>R$ 3.000,00</td>
+                                    <td><span class="badge info">Pendente</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='pagamento.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='pagamento.html'" style="cursor: pointer;">
+                                    <td>01/12</td>
+                                    <td>Roberto Alves</td>
+                                    <td>Apto 205 - Centro</td>
+                                    <td>05/01/2026</td>
+                                    <td>R$ 1.800,00</td>
+                                    <td>R$ 90,00</td>
+                                    <td>R$ 54,00</td>
+                                    <td>R$ 1.944,00</td>
+                                    <td><span class="badge warning">Atrasado</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='pagamento.html'">Acessar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="modalBaixaManual" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Baixa Manual de Pagamento</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="inquilino">Inquilino</label>
+                    <input type="text" id="inquilino" placeholder="Nome do inquilino">
+                </div>
+                <div class="form-group">
+                    <label for="imovel">Imóvel</label>
+                    <input type="text" id="imovel" placeholder="Código do imóvel">
+                </div>
+                <div class="form-group">
+                    <label for="parcela">Parcela</label>
+                    <input type="text" id="parcela" placeholder="Ex: 01/12">
+                </div>
+                <div class="form-group">
+                    <label for="vencimento">Data de Vencimento</label>
+                    <input type="date" id="vencimento">
+                </div>
+                <div class="form-group">
+                    <label for="valorOriginal">Valor Original</label>
+                    <input type="text" id="valorOriginal" placeholder="R$ 0,00">
+                </div>
+                <div class="form-group">
+                    <label for="dataPagamento">Data do Pagamento</label>
+                    <input type="date" id="dataPagamento">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="multa">Multa Calculada</label>
+                        <input type="text" id="multa" placeholder="R$ 0,00" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="juros">Juros Calculados</label>
+                        <input type="text" id="juros" placeholder="R$ 0,00" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="valorTotal">Valor Total a Pagar</label>
+                    <input type="text" id="valorTotal" placeholder="R$ 0,00" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Confirmar Baixa</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
