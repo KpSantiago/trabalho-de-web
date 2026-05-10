@@ -95,8 +95,13 @@
 .info-section h4 {
     font-size: 1.1rem;
     color: #1e293b;
-    margin-bottom: 1rem;
     font-weight: 600;
+}
+
+.info-section span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .info-row {
