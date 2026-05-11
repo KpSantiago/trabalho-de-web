@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Pagamento - KLSystem</title>
+    <title>Detalhes do Contrato - KLSystem</title>
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/pagamentos.css">
-    <link rel="stylesheet" href="../css/pagamento.css">
+    <link rel="stylesheet" href="../css/contrato.css">
 </head>
-
 <body>
     <aside class="sidebar">
         <div class="logo">
@@ -28,10 +24,10 @@
             </ul>
         </nav>
     </aside>
-
+    
     <main class="main-content">
         <header class="topbar">
-            <h2>Detalhes do Pagamento</h2>
+            <h2>Detalhes do Contrato</h2>
             <div class="user-info">
                 <span>Olá, Administrador</span>
             </div>
@@ -41,15 +37,19 @@
             <section class="dashboard-details">
                 <div class="table-container">
                     <div class="payment-header">
-                        <a href="pagamentos.html" class="btn-back">← Voltar</a>
-                        <h3>Informações do Pagamento</h3>
+                        <a href="contratos.html" class="btn-back">← Voltar</a>
+                        <h3>Informações do Contrato</h3>
                     </div>
 
                     <div class="payment-info-card">
                         <div class="info-section">
-                            <h4>Dados do Inquilino</h4>
+                            <h4>Dados do Contrato</h4>
                             <div class="info-row">
-                                <span class="label">Nome:</span>
+                                <span class="label">Código:</span>
+                                <span class="value">CT-001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Inquilino:</span>
                                 <span class="value">João Silva</span>
                             </div>
                             <div class="info-row">
@@ -72,85 +72,108 @@
                                 <span class="label">Endereço:</span>
                                 <span class="value">Rua das Flores, 402</span>
                             </div>
+                            <div class="info-row">
+                                <span class="label">Status:</span>
+                                <span class="value">Ocupado</span>
+                            </div>
                         </div>
 
                         <div class="info-section">
-                            <h4>Dados do Pagamento</h4>
+                            <h4>Condições do Contrato</h4>
                             <div class="info-row">
-                                <span class="label">Parcela:</span>
-                                <span class="value">01/12</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Vencimento:</span>
-                                <span class="value">15/01/2026</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Valor Original:</span>
+                                <span class="label">Valor Aluguel:</span>
                                 <span class="value">R$ 1.500,00</span>
                             </div>
                             <div class="info-row">
-                                <span class="label">Multa:</span>
-                                <span class="value">R$ 30,00</span>
+                                <span class="label">Condomínio:</span>
+                                <span class="value">R$ 200,00</span>
                             </div>
                             <div class="info-row">
-                                <span class="label">Juros:</span>
-                                <span class="value">R$ 18,00</span>
+                                <span class="label">IPTU:</span>
+                                <span class="value">R$ 80,00</span>
                             </div>
-                            <div class="info-row total">
-                                <span class="label">Valor Total:</span>
-                                <span class="value">R$ 1.548,00</span>
+                            <div class="info-row">
+                                <span class="label">Índice de Reajuste:</span>
+                                <span class="value">IGP-M</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Dia Vencimento:</span>
+                                <span class="value">15</span>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Prazo</h4>
+                            <div class="info-row">
+                                <span class="label">Data Início:</span>
+                                <span class="value">01/01/2026</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Data Término:</span>
+                                <span class="value">31/12/2026</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Duração:</span>
+                                <span class="value">12 meses</span>
                             </div>
                         </div>
 
                         <div class="info-section">
                             <span>
                                 <h4>Status</h4>
-                                <span class="badge warning">Atrasado</span>
+                                <span class="badge success">Ativo</span>
                             </span>
-                            <p class="days-late">15 dias de atraso</p>
+                            <p class="days-late">Vence em 235 dias</p>
                         </div>
                     </div>
 
                     <div class="payment-actions">
-                        <button class="btn btn-primary btn-confirm">Confirmar Pagamento</button>
+                        <button class="btn btn-primary btn-confirm">Encerrar Contrato</button>
                     </div>
                 </div>
 
                 <div class="side-panel">
                     <h3>Informações</h3>
                     <div class="info-box">
-                        <strong>Detalhes do Pagamento:</strong>
+                        <strong>Detalhes do Contrato:</strong>
                         <ul>
-                            <li>Este pagamento refere-se ao aluguel de Janeiro/2026</li>
-                            <li>O pagamento está atrasado desde 15/01/2026</li>
-                            <li>Encargos calculados automaticamente conforme configuração</li>
-                            <li>Após a confirmação, o status será atualizado para "Pago"</li>
+                            <li>Contrato firmado em 01/01/2026</li>
+                            <li>Reajuste anual conforme IGP-M</li>
+                            <li>Multa rescisória de 3 meses de aluguel</li>
+                            <li>Pagamentos em dia até o momento</li>
                         </ul>
                     </div>
 
                     <h3>Resumo dos Valores</h3>
                     <div class="current-config">
                         <div class="config-item">
-                            <span>Valor Original:</span>
+                            <span>Valor Aluguel:</span>
                             <strong>R$ 1.500,00</strong>
                         </div>
                         <div class="config-item">
-                            <span>Multa (2%):</span>
-                            <strong>R$ 30,00</strong>
+                            <span>Condomínio:</span>
+                            <strong>R$ 200,00</strong>
                         </div>
                         <div class="config-item">
-                            <span>Juros (15 dias):</span>
-                            <strong>R$ 18,00</strong>
+                            <span>IPTU:</span>
+                            <strong>R$ 80,00</strong>
                         </div>
                         <div class="config-item">
-                            <span>Valor Total:</span>
-                            <strong>R$ 1.548,00</strong>
+                            <span>Total Mensal:</span>
+                            <strong>R$ 1.780,00</strong>
                         </div>
                     </div>
+
+                    <h3>Histórico</h3>
+                    <ul class="activity-list">
+                        <li>Contrato criado em: <strong>01/01/2026</strong></li>
+                        <li>Assinado por: <strong>João Silva</strong></li>
+                        <li>Último pagamento: <strong>15/04/2026</strong></li>
+                        <li>Próximo vencimento: <strong>15/05/2026</strong></li>
+                    </ul>
                 </div>
             </section>
         </div>
     </main>
 </body>
-
 </html>
