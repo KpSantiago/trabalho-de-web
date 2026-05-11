@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratos - KLSystem</title>
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/contratos.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="imoveis.html">Imóveis</a></li>
+                <li><a href="inquilinos.html">Inquilinos</a></li>
+                <li class="active"><a href="contratos.html">Contratos</a></li>
+                <li><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
+                <li class="logout"><a href="../index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Gestão de Contratos</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-cards">
+                <div class="card bg-blue">
+                    <div class="card-info">
+                        <h3>Contratos Ativos</h3>
+                        <p class="number">45</p>
+                        <span class="detail">Em vigência</span>
+                    </div>
+                </div>
+                
+                <div class="card bg-green">
+                    <div class="card-info">
+                        <h3>Imóveis Disponíveis</h3>
+                        <p class="number">12</p>
+                        <span class="detail">Para locação</span>
+                    </div>
+                </div>
+                
+                <div class="card bg-orange">
+                    <div class="card-info">
+                        <h3>Vencendo em 30 dias</h3>
+                        <p class="number">8</p>
+                        <span class="detail">Renovação necessária</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Contratos Ativos</h3>
+                        <div class="table-actions">
+                            <button class="btn btn-primary">Novo Contrato</button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Contrato</th>
+                                    <th>Inquilino</th>
+                                    <th>Imóvel</th>
+                                    <th>Valor Aluguel</th>
+                                    <th>Início</th>
+                                    <th>Término</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr onclick="window.location.href='contrato.html'" style="cursor: pointer;">
+                                    <td>CT-001</td>
+                                    <td>João Silva</td>
+                                    <td>Apto 402 - Centro</td>
+                                    <td>R$ 1.500,00</td>
+                                    <td>01/01/2026</td>
+                                    <td>31/12/2026</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='contrato.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='contrato.html'" style="cursor: pointer;">
+                                    <td>CT-002</td>
+                                    <td>Maria Souza</td>
+                                    <td>Casa 12 - Zona Sul</td>
+                                    <td>R$ 2.300,00</td>
+                                    <td>15/01/2026</td>
+                                    <td>14/01/2027</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='contrato.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='contrato.html'" style="cursor: pointer;">
+                                    <td>CT-003</td>
+                                    <td>Carlos Pereira</td>
+                                    <td>Apto 101 - Norte</td>
+                                    <td>R$ 1.200,00</td>
+                                    <td>01/02/2026</td>
+                                    <td>31/01/2027</td>
+                                    <td><span class="badge warning">Vencendo</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='contrato.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='contrato.html'" style="cursor: pointer;">
+                                    <td>CT-004</td>
+                                    <td>Fernanda Lima</td>
+                                    <td>Sala Comercial 05</td>
+                                    <td>R$ 3.000,00</td>
+                                    <td>01/03/2026</td>
+                                    <td>28/02/2027</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='contrato.html'">Acessar</button></td>
+                                </tr>
+                                <tr onclick="window.location.href='contrato.html'" style="cursor: pointer;">
+                                    <td>CT-005</td>
+                                    <td>Roberto Alves</td>
+                                    <td>Apto 205 - Centro</td>
+                                    <td>R$ 1.800,00</td>
+                                    <td>10/03/2026</td>
+                                    <td>09/03/2027</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><button class="btn-small" onclick="event.stopPropagation(); window.location.href='contrato.html'">Acessar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="side-panel">
+                    <h3>Informações</h3>
+                    <div class="info-box">
+                        <strong>Como funciona:</strong>
+                        <ul>
+                            <li>Selecione um inquilino e um imóvel disponível</li>
+                            <li>Defina os parâmetros do contrato</li>
+                            <li>O imóvel será marcado como "Ocupado"</li>
+                            <li>Ao encerrar, o imóvel volta para "Disponível"</li>
+                        </ul>
+                    </div>
+
+                    <h3>Parâmetros Padrão</h3>
+                    <div class="current-config">
+                        <div class="config-item">
+                            <span>Duração padrão:</span>
+                            <strong>12 meses</strong>
+                        </div>
+                        <div class="config-item">
+                            <span>Índice de reajuste:</span>
+                            <strong>IGP-M</strong>
+                        </div>
+                        <div class="config-item">
+                            <span>Multa rescisão:</span>
+                            <strong>3 meses</strong>
+                        </div>
+                    </div>
+
+                    <h3>Últimas Atividades</h3>
+                    <ul class="activity-list">
+                        <li>Novo contrato: <strong>CT-005</strong></li>
+                        <li>Encerrado: <strong>CT-098</strong> - Término</li>
+                        <li>Renovado: <strong>CT-042</strong> - +12 meses</li>
+                        <li>Rescindido: <strong>CT-076</strong> - Multa aplicada</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
