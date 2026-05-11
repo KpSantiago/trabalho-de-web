@@ -9,19 +9,6 @@ body {
     height: 100vh;
 }
 
-
-/* header {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    padding: .2rem 2rem;
-}
-
-header h1 {
-    color: #170ced;
-} */
-
 main {
     width: 100%;
     height: 100%;
@@ -115,7 +102,7 @@ h1 {
 }
 
 .img {
-    background-image: url('../image.jpg');
+    background-image: url('../img/image.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;
