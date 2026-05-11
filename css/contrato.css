@@ -229,6 +229,12 @@ body {
     border-bottom: 1px solid #e2e8f0;
 }
 
+.info-section span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .info-section:last-child {
     border-bottom: none;
     margin-bottom: 0;
@@ -238,7 +244,6 @@ body {
 .info-section h4 {
     font-size: 1.1rem;
     color: #1e293b;
-    margin-bottom: 1rem;
     font-weight: 600;
 }
 
