@@ -120,19 +120,19 @@
 }
 
 .btn-small {
-    background-color: #10b981;
-    color: #fff;
+    background-color: #e9f0ff8a;
+    color: #2563eb;
+    padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
     font-weight: 600;
-    padding: 0.3rem 1.5rem;
     border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: .3s;
+    border: 1px solid #2563eb;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
 .btn-small:hover {
-    background-color: #10b981bb;
+    background-color: #dbeafe;
 }
 
 .btn-full {
