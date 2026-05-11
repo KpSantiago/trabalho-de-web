@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Contrato - KLSystem</title>
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/criar-contrato.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="imoveis.html">Imóveis</a></li>
+                <li><a href="inquilinos.html">Inquilinos</a></li>
+                <li><a href="contratos.html">Contratos</a></li>
+                <li><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
+                <li class="logout"><a href="../index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Criar Contrato</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="payment-header">
+                        <a href="contratos.html" class="btn-back">← Voltar</a>
+                        <h3>Novo Contrato</h3>
+                    </div>
+
+                    <form class="contract-form">
+                        <div class="form-section">
+                            <h4>Dados do Inquilino</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="inquilino">Inquilino</label>
+                                    <select id="inquilino">
+                                        <option value="">Selecione o inquilino</option>
+                                        <option value="1">João Silva</option>
+                                        <option value="2">Maria Souza</option>
+                                        <option value="3">Carlos Pereira</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" id="cpf" placeholder="000.000.000-00" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Dados do Imóvel</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="imovel">Imóvel</label>
+                                    <select id="imovel">
+                                        <option value="">Selecione o imóvel</option>
+                                        <option value="1">Apto 402 - Centro</option>
+                                        <option value="2">Casa 12 - Zona Sul</option>
+                                        <option value="3">Apto 101 - Norte</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="endereco">Endereço</label>
+                                    <input type="text" id="endereco" placeholder="Endereço do imóvel" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Condições do Contrato</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="valorAluguel">Valor Aluguel</label>
+                                    <input type="text" id="valorAluguel" placeholder="R$ 0,00">
+                                </div>
+                                <div class="form-group">
+                                    <label for="valorCondominio">Condomínio</label>
+                                    <input type="text" id="valorCondominio" placeholder="R$ 0,00">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="valorIptu">IPTU</label>
+                                    <input type="text" id="valorIptu" placeholder="R$ 0,00">
+                                </div>
+                                <div class="form-group">
+                                    <label for="indiceReajuste">Índice de Reajuste</label>
+                                    <select id="indiceReajuste">
+                                        <option value="IGP-M">IGP-M</option>
+                                        <option value="IPCA">IPCA</option>
+                                        <option value="INPC">INPC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="diaVencimento">Dia Vencimento</label>
+                                    <select id="diaVencimento">
+                                        <option value="1">1</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15" selected>15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="multaRescisao">Multa Rescisão</label>
+                                    <select id="multaRescisao">
+                                        <option value="1">1 mês</option>
+                                        <option value="2">2 meses</option>
+                                        <option value="3" selected>3 meses</option>
+                                        <option value="6">6 meses</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Prazo</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dataInicio">Data Início</label>
+                                    <input type="date" id="dataInicio">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="duracao">Duração</label>
+                                    <select id="duracao">
+                                        <option value="6">6 meses</option>
+                                        <option value="12" selected>12 meses</option>
+                                        <option value="18">18 meses</option>
+                                        <option value="24">24 meses</option>
+                                        <option value="36">36 meses</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="renovacao">Renovação Automática</label>
+                                    <select id="renovacao">
+                                        <option value="sim">Sim</option>
+                                        <option value="nao" selected>Não</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-confirm">Criar Contrato</button>
+                            <a href="contratos.html" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
