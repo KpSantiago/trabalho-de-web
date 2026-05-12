@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerencie todos os pagamentos de aluguel no KLSystem. Visualize pagamentos pendentes, pagos no mês, em atraso e configure encargos.">
+    <meta name="keywords" content="pagamentos, aluguel, gestão financeira, KLSystem, inquilinos, encargos, multa, juros">
+    <meta name="author" content="KLSystem">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Controle de Pagamentos - KLSystem">
+    <meta property="og:description" content="Gerencie todos os pagamentos de aluguel de forma simples e eficiente.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Controle de Pagamentos - KLSystem">
+    <meta name="twitter:description" content="Gerencie todos os pagamentos de aluguel de forma simples e eficiente.">
+    <link rel="canonical" href="https://klsystem.com/pagamentos">
+    <title>Controle de Pagamentos - KLSystem</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="tables.css">
+    <link rel="stylesheet" href="badge.css">
+    <link rel="stylesheet" href="forms.css">
+    <link rel="stylesheet" href="pagamentos.css">
+</head>
+<body>
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-toggle">
+    <label for="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </label>
+    <div class="sidebar-overlay"></div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="imoveis.html">Imóveis</a></li>
+                <li><a href="inquilinos.html">Inquilinos</a></li>
+                <li><a href="contratos.html">Contratos</a></li>
+                <li class="active"><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
+                <li class="logout"><a href="index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Controle de Pagamentos</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-cards">
+                <div class="card bg-blue">
+                    <div class="card-info">
+                        <h3>Pagamentos Pendentes</h3>
+                        <p class="number">23</p>
+                        <span class="detail">Aguardando liquidação</span>
+                    </div>
+                </div>
+
+                <div class="card bg-green">
+                    <div class="card-info">
+                        <h3>Pagos no Mês</h3>
+                        <p class="number">45</p>
+                        <span class="detail">Total arrecadado</span>
+                    </div>
+                </div>
+
+                <div class="card bg-orange">
+                    <div class="card-info">
+                        <h3>Em Atraso</h3>
+                        <p class="number">8</p>
+                        <span class="detail">Com encargos calculados</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Pagamentos Pendentes</h3>
+                        <div class="table-actions">
+                            <a href="configuracao-encargos.html" class="btn btn-primary">Configurar Encargos</a>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parcela</th>
+                                    <th>Inquilino</th>
+                                    <th>Imóvel</th>
+                                    <th>Vencimento</th>
+                                    <th>Valor Original</th>
+                                    <th>Multa</th>
+                                    <th>Juros</th>
+                                    <th>Valor Total</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01/12</td>
+                                    <td>João Silva</td>
+                                    <td>Apto 402 - Centro</td>
+                                    <td>15/01/2026</td>
+                                    <td>R$ 1.500,00</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>R$ 1.500,00</td>
+                                    <td><span class="badge warning">Atrasado</span></td>
+                                    <td><a class="btn-small" href="pagamento.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>02/12</td>
+                                    <td>Maria Souza</td>
+                                    <td>Casa 12 - Zona Sul</td>
+                                    <td>20/01/2026</td>
+                                    <td>R$ 2.300,00</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>R$ 2.300,00</td>
+                                    <td><span class="badge info">Pendente</span></td>
+                                    <td><a class="btn-small" href="pagamento.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>01/12</td>
+                                    <td>Carlos Pereira</td>
+                                    <td>Apto 101 - Norte</td>
+                                    <td>10/01/2026</td>
+                                    <td>R$ 1.200,00</td>
+                                    <td>R$ 60,00</td>
+                                    <td>R$ 36,00</td>
+                                    <td>R$ 1.296,00</td>
+                                    <td><span class="badge warning">Atrasado</span></td>
+                                    <td><a class="btn-small" href="pagamento.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>03/12</td>
+                                    <td>Fernanda Lima</td>
+                                    <td>Sala Comercial 05</td>
+                                    <td>25/01/2026</td>
+                                    <td>R$ 3.000,00</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>R$ 3.000,00</td>
+                                    <td><span class="badge info">Pendente</span></td>
+                                    <td><a class="btn-small" href="pagamento.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>01/12</td>
+                                    <td>Roberto Alves</td>
+                                    <td>Apto 205 - Centro</td>
+                                    <td>05/01/2026</td>
+                                    <td>R$ 1.800,00</td>
+                                    <td>R$ 90,00</td>
+                                    <td>R$ 54,00</td>
+                                    <td>R$ 1.944,00</td>
+                                    <td><span class="badge warning">Atrasado</span></td>
+                                    <td><a class="btn-small" href="pagamento.html">Acessar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

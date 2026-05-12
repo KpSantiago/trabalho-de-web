@@ -1,0 +1,60 @@
+/* Page-specific styles for configuracao-encargos.html */
+
+/* Config form specific adjustments */
+.config-form {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Table header specific adjustments for better spacing */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+}
+
+.table-header .btn-back {
+    flex-shrink: 0;
+}
+
+.table-header h3 {
+    margin: 0;
+}
+
+/* Form section specific styling for config page */
+.config-form .form-section {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
+
+.config-form .form-section h4 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1.75rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Form actions specific styling */
+.config-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.config-form .form-actions .btn {
+    flex: 1;
+}
+
+.config-form .form-actions .btn:not(.btn-full) {
+    flex: 0 0 auto;
+}

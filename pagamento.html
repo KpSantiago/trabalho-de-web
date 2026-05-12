@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visualize detalhes completos do pagamento 01/12 no KLSystem. Informações sobre inquilino, imóvel, valores, encargos e status.">
+    <meta name="keywords" content="pagamento, detalhes, aluguel, encargos, multa, juros, KLSystem, gestão financeira">
+    <meta name="author" content="KLSystem">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Detalhes do Pagamento - KLSystem">
+    <meta property="og:description" content="Visualize todas as informações do pagamento, incluindo dados do inquilino, imóvel, valores e encargos.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Detalhes do Pagamento - KLSystem">
+    <meta name="twitter:description" content="Visualize todas as informações do pagamento, incluindo dados do inquilino, imóvel, valores e encargos.">
+    <link rel="canonical" href="https://klsystem.com/pagamentos/01-12">
+    <title>Detalhes do Pagamento - KLSystem</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="forms.css">
+    <link rel="stylesheet" href="badge.css">
+    <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-toggle">
+    <label for="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </label>
+    <div class="sidebar-overlay"></div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="imoveis.html">Imóveis</a></li>
+                <li><a href="inquilinos.html">Inquilinos</a></li>
+                <li><a href="contratos.html">Contratos</a></li>
+                <li><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
+                <li class="logout"><a href="index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Detalhes do Pagamento</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-details">
+                <div class="table-container" style="flex: 2;">
+                    <div class="table-header">
+                        <a href="pagamentos.html" class="btn btn-back">← Voltar</a>
+                        <h3>Informações do Pagamento</h3>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="form-section">
+                            <h4>Dados do Inquilino</h4>
+                            <div class="info-row">
+                                <span class="label">Nome:</span>
+                                <span class="value">João Silva</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">CPF:</span>
+                                <span class="value">123.456.789-00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Telefone:</span>
+                                <span class="value">(11) 99999-9999</span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Dados do Imóvel</h4>
+                            <div class="info-row">
+                                <span class="label">Imóvel:</span>
+                                <span class="value">Apto 402 - Centro</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Endereço:</span>
+                                <span class="value">Rua das Flores, 402</span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Dados do Pagamento</h4>
+                            <div class="info-row">
+                                <span class="label">Parcela:</span>
+                                <span class="value">01/12</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Vencimento:</span>
+                                <span class="value">15/01/2026</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Valor Original:</span>
+                                <span class="value">R$ 1.500,00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Multa:</span>
+                                <span class="value">R$ 30,00</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Juros:</span>
+                                <span class="value">R$ 18,00</span>
+                            </div>
+                            <div class="info-row total">
+                                <span class="label">Valor Total:</span>
+                                <span class="value">R$ 1.548,00</span>
+                            </div>
+                        </div>
+
+                        <div class="form-section" style="margin-bottom: 0;">
+                            <h4 style="margin-bottom: 0;">Status <span class="badge warning">Atrasado</span></h4>
+                            <p style="color: var(--warning); font-size: 0.95rem; font-weight: 500; margin-top: 0.5rem;">15 dias de atraso</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-confirm">Confirmar Pagamento</button>
+                    </div>
+                </div>
+
+                <div class="card" style="flex: 1; min-width: 400px; height: fit-content;">
+                    <div class="card-header">
+                        <h3>Informações</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-box">
+                            <strong>Detalhes do Pagamento:</strong>
+                            <ul>
+                                <li>Este pagamento refere-se ao aluguel de Janeiro/2026</li>
+                                <li>O pagamento está atrasado desde 15/01/2026</li>
+                                <li>Encargos calculados automaticamente conforme configuração</li>
+                                <li>Após a confirmação, o status será atualizado para "Pago"</li>
+                            </ul>
+                        </div>
+
+                        <h3>Resumo dos Valores</h3>
+                        <div class="current-config">
+                            <div class="config-item">
+                                <span>Valor Original:</span>
+                                <strong>R$ 1.500,00</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Multa (2%):</span>
+                                <strong>R$ 30,00</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Juros (15 dias):</span>
+                                <strong>R$ 18,00</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Valor Total:</span>
+                                <strong>R$ 1.548,00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

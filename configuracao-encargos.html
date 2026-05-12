@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Configure os encargos de multa e juros para pagamentos em atraso no KLSystem. Defina percentuais, tolerância e limites de isenção.">
+    <meta name="keywords" content="configuração, encargos, multa, juros, atraso, KLSystem, gestão financeira">
+    <meta name="author" content="KLSystem">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Configuração de Encargos - KLSystem">
+    <meta property="og:description" content="Configure os parâmetros de cálculo de multa e juros para pagamentos em atraso.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Configuração de Encargos - KLSystem">
+    <meta name="twitter:description" content="Configure os parâmetros de cálculo de multa e juros para pagamentos em atraso.">
+    <link rel="canonical" href="https://klsystem.com/pagamentos/configuracao-encargos">
+    <title>Configuração de Encargos - KLSystem</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="forms.css">
+    <link rel="stylesheet" href="configuracao-encargos.css">
+</head>
+<body>
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-toggle">
+    <label for="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </label>
+    <div class="sidebar-overlay"></div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="imoveis.html">Imóveis</a></li>
+                <li><a href="inquilinos.html">Inquilinos</a></li>
+                <li><a href="contratos.html">Contratos</a></li>
+                <li><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
+                <li class="logout"><a href="index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Configuração de Encargos</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-details">
+                <div class="table-container" style="flex: 2;">
+                    <div class="table-header">
+                        <a href="pagamentos.html" class="btn btn-back">← Voltar</a>
+                        <h3>Parâmetros de Cálculo</h3>
+                    </div>
+                    <form class="config-form">
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label for="multaPercentual">Multa por Atraso (%)</label>
+                                <input type="number" id="multaPercentual" name="multaPercentual" value="2" min="0" max="100" step="0.5" required>
+                                <small>Percentual aplicado sobre o valor original quando o pagamento ocorrer após o vencimento.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jurosMora">Juros de Mora (% ao dia)</label>
+                                <input type="number" id="jurosMora" name="jurosMora" value="0.33" min="0" max="100" step="0.01" required>
+                                <small>Percentual aplicado por dia de atraso sobre o valor original.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="toleranciaDias">Tolerância (dias)</label>
+                                <input type="number" id="toleranciaDias" name="toleranciaDias" value="0" min="0" max="30" step="1">
+                                <small>Número de dias de tolerância antes de começar a cobrar encargos.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="valorMinimoMulta">Valor Mínimo da Multa (R$)</label>
+                                <input type="number" id="valorMinimoMulta" name="valorMinimoMulta" value="0" min="0" step="0.01">
+                                <small>Valor mínimo a ser cobrado como multa, mesmo que o percentual resulte em valor menor.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="limiteIsencao">Limite de Isenção (dias)</label>
+                                <input type="number" id="limiteIsencao" name="limiteIsencao" value="0" min="0" max="365" step="1">
+                                <small>Se o atraso for menor que este limite, os encargos não serão cobrados.</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+                                <button type="reset" class="btn btn-secondary">Restaurar Padrões</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card" style="flex: 1; min-width: 400px; height: fit-content;">
+                    <div class="card-header">
+                        <h3>Informações</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-box">
+                            <strong>Como funciona o cálculo:</strong>
+                            <ul>
+                                <li>A multa é calculada sobre o valor original do aluguel</li>
+                                <li>Os juros são calculados por dia de atraso</li>
+                                <li>O valor total = Valor Original + Multa + Juros</li>
+                                <li>As configurações se aplicam a todos os contratos ativos</li>
+                            </ul>
+                        </div>
+
+                        <h3>Configuração Atual</h3>
+                        <div class="current-config">
+                            <div class="config-item">
+                                <span>Multa por Atraso:</span>
+                                <strong>2%</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Juros de Mora:</span>
+                                <strong>0,33% ao dia</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Tolerância:</span>
+                                <strong>0 dias</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Valor Mínimo da Multa:</span>
+                                <strong>R$ 0,00</strong>
+                            </div>
+                            <div class="config-item">
+                                <span>Limite de Isenção:</span>
+                                <strong>0 dias</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

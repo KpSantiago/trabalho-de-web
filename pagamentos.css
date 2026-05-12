@@ -1,0 +1,94 @@
+/* Page-specific styles for pagamentos.html */
+
+/* Dashboard cards specific adjustments for payments page */
+.dashboard-cards .card {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Card info specific styling */
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.card-info .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin: 0;
+}
+
+.card-info .detail {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    color: white;
+    margin: 0;
+}
+
+/* Table container specific adjustments */
+.table-container {
+    width: 100%;
+}
+
+/* Table header specific adjustments */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.table-header h3 {
+    margin: 0;
+}
+
+/* Table actions specific styling */
+.table-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Table wrapper specific adjustments */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Small button specific styling for table actions */
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-small:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Ensure primary button maintains proper hover state */
+.table-actions .btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.table-actions .btn-primary:hover {
+    background: var(--accent-hover);
+    color: white;
+}
