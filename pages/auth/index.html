@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faça login no KLSystem - Acesse sua conta e gerencie seus projetos com nossa plataforma moderna de gestão e automação.">
+    <meta name="keywords" content="login, entrar, acesso, conta, KLSystem, SaaS, gestão, automação">
+    <meta name="author" content="KLSystem">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Faça Login no KLSystem - Acesse sua Conta">
+    <meta property="og:description" content="Acesse sua conta no KLSystem e continue transformando sua produtividade com nossa plataforma moderna de gestão e automação.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Faça Login no KLSystem - Acesse sua Conta">
+    <meta name="twitter:description" content="Acesse sua conta no KLSystem e continue transformando sua produtividade com nossa plataforma moderna de gestão e automação.">
+    <link rel="canonical" href="https://klsystem.com/signin">
+    <title>Faça Login no KLSystem - Acesse sua Conta</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <header>
+        <div class="logo">KL<span>System</span></div>
+    </header>
+    <main>
+        <div class="form-container">
+            <div>
+                <h1>Bem-vindo de volta!</h1>
+                <p>Entre na sua conta para continuar onde parou.</p>
+            </div>
+            <form action="dashboard.html" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="remember">
+                            <span>Lembrar de mim</span>
+                        </label>
+                        <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.875rem;">Esqueceu a senha?</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+            </form>
+            <div class="hr"></div>
+            <div class="form-footer">
+                Não tem uma conta? <a href="singup.html">Cadastre-se</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
