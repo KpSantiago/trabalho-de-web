@@ -74,47 +74,6 @@ table tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* Badges */
-.badge {
-    padding: 0.375rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: inline-block;
-}
-
-.badge.success {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--success);
-    border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.badge.warning {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--warning);
-    border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.badge.error {
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--error);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.badge.info {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--accent);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.badge.neutral {
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-}
-
 /* Table Actions Cell */
 table td.actions {
     white-space: nowrap;

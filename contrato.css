@@ -30,6 +30,22 @@
     font-weight: 500;
 }
 
+/* Table header specific adjustments */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.table-header .btn-back {
+    flex-shrink: 0;
+}
+
+.table-header h3 {
+    margin: 0;
+}
+
 /* Payment header specific styles */
 .payment-header {
     display: flex;
