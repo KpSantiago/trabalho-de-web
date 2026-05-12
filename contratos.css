@@ -69,12 +69,26 @@
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
     border-radius: 20px;
-    background: var(--accent);
-    color: white;
+    background: transparent;
+    color: var(--accent);
     text-decoration: none;
     transition: all 0.2s ease;
+    border: 1px solid transparent;
 }
 
 .btn-small:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Ensure primary button maintains proper hover state */
+.table-actions .btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.table-actions .btn-primary:hover {
     background: var(--accent-hover);
+    color: white;
 }
