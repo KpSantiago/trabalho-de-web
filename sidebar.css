@@ -93,7 +93,11 @@
     color: var(--error);
 }
 
-/* Mobile Sidebar Toggle */
+/* Mobile Sidebar Toggle - Checkbox Hack */
+.sidebar-checkbox {
+    display: none;
+}
+
 .sidebar-toggle {
     display: none;
     position: fixed;
@@ -129,21 +133,21 @@
     .sidebar {
         transform: translateX(-100%);
     }
-    
-    .sidebar.open {
+
+    .sidebar-checkbox:checked ~ .sidebar {
         transform: translateX(0);
     }
-    
+
     .sidebar-toggle {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    
-    .sidebar-overlay.show {
+
+    .sidebar-checkbox:checked ~ .sidebar-overlay {
         display: block;
     }
-    
+
     .main-content {
         margin-left: 0;
     }
