@@ -1,0 +1,269 @@
+/* Form Styles */
+.form-section {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+.form-section h4 {
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--text-secondary);
+}
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.375rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.form-group small.error {
+    color: var(--error);
+}
+
+.form-group small.success {
+    color: var(--success);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.form-actions .btn {
+    flex: 1;
+}
+
+.form-actions .btn:not(.btn-full) {
+    flex: 0 0 auto;
+}
+
+/* Checkbox and Radio */
+.form-group .checkbox-group,
+.form-group .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group .checkbox-item,
+.form-group .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group .checkbox-item label,
+.form-group .radio-item label {
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+/* Inline Form */
+.form-inline {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.form-inline .form-group {
+    flex: 1;
+}
+
+.form-inline .btn {
+    margin-bottom: 0;
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-form input {
+    flex: 1;
+}
+
+.search-form .btn {
+    flex: 0 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form .btn {
+        width: 100%;
+    }
+}
+
+/* Info Row */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row .label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.info-row .value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.info-row.total {
+    border-top: 2px solid var(--border);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 1.125rem;
+}
+
+.info-row.total .value {
+    color: var(--success);
+    font-size: 1.5rem;
+}
+
+/* Current Config */
+.current-config {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
+
+.current-config .config-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.current-config .config-item:last-child {
+    border-bottom: none;
+}
+
+.current-config .config-item span {
+    color: var(--text-secondary);
+}
+
+.current-config .config-item strong {
+    color: var(--text-primary);
+}

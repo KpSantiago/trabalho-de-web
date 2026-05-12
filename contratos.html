@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerencie todos os seus contratos de locação no KLSystem. Visualize contratos ativos, imóveis disponíveis e contratos vencendo em 30 dias.">
+    <meta name="keywords" content="contratos, locação, aluguel, gestão imobiliária, KLSystem, inquilinos, imóveis">
+    <meta name="author" content="KLSystem">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Gestão de Contratos - KLSystem">
+    <meta property="og:description" content="Gerencie todos os seus contratos de locação de forma simples e eficiente.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gestão de Contratos - KLSystem">
+    <meta name="twitter:description" content="Gerencie todos os seus contratos de locação de forma simples e eficiente.">
+    <link rel="canonical" href="https://klsystem.com/contratos">
+    <title>Gestão de Contratos - KLSystem</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="tables.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="imoveis.html">Imóveis</a></li>
+                <li><a href="inquilinos.html">Inquilinos</a></li>
+                <li class="active"><a href="contratos.html">Contratos</a></li>
+                <li><a href="pagamentos.html">Pagamentos</a></li>
+                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
+                <li class="logout"><a href="index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Gestão de Contratos</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="dashboard-cards">
+                <div class="card bg-blue">
+                    <div class="card-info">
+                        <h3>Contratos Ativos</h3>
+                        <p class="number">45</p>
+                        <span class="detail">Em vigência</span>
+                    </div>
+                </div>
+                
+                <div class="card bg-green">
+                    <div class="card-info">
+                        <h3>Imóveis Disponíveis</h3>
+                        <p class="number">12</p>
+                        <span class="detail">Para locação</span>
+                    </div>
+                </div>
+                
+                <div class="card bg-orange">
+                    <div class="card-info">
+                        <h3>Vencendo em 30 dias</h3>
+                        <p class="number">8</p>
+                        <span class="detail">Renovação necessária</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Contratos Ativos</h3>
+                        <div class="table-actions">
+                            <a href="criar-contrato.html" class="btn btn-primary">Novo Contrato</a>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Contrato</th>
+                                    <th>Inquilino</th>
+                                    <th>Imóvel</th>
+                                    <th>Valor Aluguel</th>
+                                    <th>Início</th>
+                                    <th>Término</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CT-001</td>
+                                    <td>João Silva</td>
+                                    <td>Apto 402 - Centro</td>
+                                    <td>R$ 1.500,00</td>
+                                    <td>01/01/2026</td>
+                                    <td>31/12/2026</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><a class="btn-small" href="contrato.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CT-002</td>
+                                    <td>Maria Souza</td>
+                                    <td>Casa 12 - Zona Sul</td>
+                                    <td>R$ 2.300,00</td>
+                                    <td>15/01/2026</td>
+                                    <td>14/01/2027</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><a class="btn-small" href="contrato.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CT-003</td>
+                                    <td>Carlos Pereira</td>
+                                    <td>Apto 101 - Norte</td>
+                                    <td>R$ 1.200,00</td>
+                                    <td>01/02/2026</td>
+                                    <td>31/01/2027</td>
+                                    <td><span class="badge warning">Vencendo</span></td>
+                                    <td><a class="btn-small" href="contrato.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CT-004</td>
+                                    <td>Fernanda Lima</td>
+                                    <td>Sala Comercial 05</td>
+                                    <td>R$ 3.000,00</td>
+                                    <td>01/03/2026</td>
+                                    <td>28/02/2027</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><a class="btn-small" href="contrato.html">Acessar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CT-005</td>
+                                    <td>Roberto Alves</td>
+                                    <td>Apto 205 - Centro</td>
+                                    <td>R$ 1.800,00</td>
+                                    <td>10/03/2026</td>
+                                    <td>09/03/2027</td>
+                                    <td><span class="badge success">Ativo</span></td>
+                                    <td><a class="btn-small" href="contrato.html">Acessar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

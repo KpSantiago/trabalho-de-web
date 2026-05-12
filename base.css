@@ -1,0 +1,157 @@
+/* Base Styles - Dark Theme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-card: #161616;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --border: #27272a;
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Layout */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topbar {
+    background: var(--bg-card);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info span {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.dashboard-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.dashboard-details {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p {
+    color: var(--text-secondary);
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* Scrollbar */
+.dashboard-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dashboard-scroll::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.dashboard-scroll::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+.dashboard-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .topbar {
+        padding: 1rem;
+    }
+    
+    .topbar h2 {
+        font-size: 1.25rem;
+    }
+    
+    .dashboard-scroll {
+        padding: 1rem;
+    }
+    
+    .dashboard-details {
+        flex-direction: column;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}

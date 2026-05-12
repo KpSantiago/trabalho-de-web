@@ -1,0 +1,155 @@
+/* Card Styles */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+}
+
+.card-header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.card-header h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.card-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.card-info .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin: 0;
+}
+
+.card-info .detail {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    color: white;
+    margin: 0;
+}
+
+/* Gradient Cards */
+.bg-blue {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
+}
+
+.bg-green {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+}
+
+.bg-orange {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: none;
+}
+
+.bg-purple {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border: none;
+}
+
+.bg-red {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+}
+
+/* Info Card */
+.info-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-card h4 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Info Box */
+.info-box {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent);
+}
+
+.info-box strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.info-box ul {
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.info-box li {
+    margin-bottom: 0.3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-cards {
+        flex-direction: column;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+    
+    .card-info .number {
+        font-size: 2rem;
+    }
+}
