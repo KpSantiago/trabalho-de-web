@@ -85,6 +85,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2.5rem;
+    flex-wrap: wrap;
 }
 
 .table-header .btn-back {
