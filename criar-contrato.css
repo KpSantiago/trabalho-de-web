@@ -1,15 +1,37 @@
 /* Page-specific styles for criar-contrato.html */
-
+.dashboard-scroll {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* Contract form specific adjustments */
 .contract-form {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1700px;
+}
+
+/* Table header specific adjustments for better spacing */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+}
+
+.table-header .btn-back {
+    flex-shrink: 0;
+}
+
+.table-header h3 {
+    margin: 0;
 }
 
 /* Form section specific styling for create contract page */
 .contract-form .form-section {
     background: var(--bg-secondary);
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 12px;
     margin-bottom: 2rem;
     border: 1px solid var(--border);
@@ -58,4 +80,16 @@
     background: var(--bg-card);
     opacity: 0.7;
     cursor: not-allowed;
+}
+
+/* Form sections grid layout for side-by-side positioning */
+.form-sections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-sections-grid .form-section {
+    margin-bottom: 0;
 }
