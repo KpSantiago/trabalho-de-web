@@ -6,6 +6,8 @@
     padding: 1.5rem;
     box-shadow: var(--shadow);
     transition: all 0.2s ease;
+    flex: 1;
+    min-width: 350px;
 }
 
 .card:hover {
@@ -39,8 +41,13 @@
 .dashboard-cards {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-bottom: 2rem;
+}
+
+.dashboard-cards .card {
+    flex: 1;
+    min-width: 250px;
 }
 
 .card-info {
@@ -101,21 +108,21 @@
 .info-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
 .info-card h4 {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
     color: var(--text-primary);
 }
 
 /* Info Box */
 .info-box {
     background: var(--bg-secondary);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
     border-left: 4px solid var(--accent);
@@ -123,20 +130,51 @@
 
 .info-box strong {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: var(--text-primary);
     font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .info-box ul {
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     margin-left: 1.5rem;
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
 }
 
 .info-box li {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+/* Current Config */
+.current-config {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
+
+.current-config .config-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+}
+
+.current-config .config-item:last-child {
+    border-bottom: none;
+}
+
+.current-config .config-item span {
+    color: var(--text-secondary);
+}
+
+.current-config .config-item strong {
+    color: var(--text-primary);
 }
 
 /* Responsive */

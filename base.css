@@ -70,8 +70,8 @@ body {
 
 .dashboard-details {
     display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 2rem;
+    flex-wrap: nowrap;
 }
 
 /* Typography */
