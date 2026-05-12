@@ -1,0 +1,61 @@
+/* Page-specific styles for criar-contrato.html */
+
+/* Contract form specific adjustments */
+.contract-form {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Form section specific styling for create contract page */
+.contract-form .form-section {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
+
+.contract-form .form-section h4 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1.75rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Form row specific adjustments for create contract */
+.contract-form .form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.contract-form .form-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Form actions specific styling */
+.contract-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.contract-form .form-actions .btn {
+    flex: 1;
+}
+
+.contract-form .form-actions .btn:not(.btn-full) {
+    flex: 0 0 auto;
+}
+
+/* Readonly input specific styling */
+.contract-form input[readonly] {
+    background: var(--bg-card);
+    opacity: 0.7;
+    cursor: not-allowed;
+}

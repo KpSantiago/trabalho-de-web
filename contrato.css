@@ -1,0 +1,70 @@
+/* Page-specific styles for contrato.html */
+
+/* Activity list styling */
+.activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activity-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.activity-list li:last-child {
+    border-bottom: none;
+}
+
+.activity-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Days late text styling */
+.days-late {
+    color: var(--success);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Payment header specific styles */
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Payment info card specific styles */
+.payment-info-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Payment actions specific styles */
+.payment-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+/* Side panel specific styles */
+.side-panel {
+    flex: 1;
+    min-width: 400px;
+}
+
+/* Info section specific styles */
+.info-section {
+    margin-bottom: 1.5rem;
+}
+
+.info-section:last-child {
+    margin-bottom: 0;
+}
