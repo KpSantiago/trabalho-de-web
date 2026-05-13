@@ -1,0 +1,13 @@
+.btn-edit {
+    background-color: #f1c40f;
+    color: #333;
+}
+
+.btn-edit:hover {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.dashboard-details {
+    margin-top: 2rem;
+}

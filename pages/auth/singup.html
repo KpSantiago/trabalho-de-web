@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crie sua conta no KLSystem - Plataforma moderna de gestão e automação. Cadastre-se gratuitamente e comece a transformar sua produtividade hoje.">
+    <meta name="description"
+        content="Crie sua conta no KLSystem - Plataforma moderna de gestão e automação. Cadastre-se gratuitamente e comece a transformar sua produtividade hoje.">
     <meta name="keywords" content="cadastro, registro, conta, KLSystem, SaaS, gestão, automação">
     <meta name="author" content="KLSystem">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Cadastre-se no KLSystem - Comece Gratuitamente">
-    <meta property="og:description" content="Crie sua conta no KLSystem e comece a transformar sua produtividade com nossa plataforma moderna de gestão e automação.">
+    <meta property="og:description"
+        content="Crie sua conta no KLSystem e comece a transformar sua produtividade com nossa plataforma moderna de gestão e automação.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cadastre-se no KLSystem - Comece Gratuitamente">
-    <meta name="twitter:description" content="Crie sua conta no KLSystem e comece a transformar sua produtividade com nossa plataforma moderna de gestão e automação.">
+    <meta name="twitter:description"
+        content="Crie sua conta no KLSystem e comece a transformar sua produtividade com nossa plataforma moderna de gestão e automação.">
     <link rel="canonical" href="https://klsystem.com/signup">
     <title>Cadastre-se no KLSystem - Crie sua Conta Gratuitamente</title>
     <link rel="stylesheet" href="auth.css">
 </head>
+
 <body>
     <header>
         <div class="logo">KL<span>System</span></div>
@@ -27,7 +32,7 @@
                 <h1>Bem-vindo ao <span>KLSystem</span>!</h1>
                 <p>Crie sua conta e comece a transformar sua produtividade hoje.</p>
             </div>
-            <form action="dashboard.html" method="POST">
+            <form action="../dashboard/index.html" method="POST">
                 <div class="form-group">
                     <label for="username">Nome de Usuário</label>
                     <input type="text" id="username" name="username" placeholder="seu nome" required>
@@ -38,36 +43,26 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" name="password"
-                        placeholder="Digite sua senha" 
-                        required
-                        autocomplete="new-password"
-                        minlength="8"
-                        aria-required="true"
-                        aria-describedby="password-hint"
-                    >
-                    <small id="password-hint" style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; display: block;">Mínimo 8 caracteres</small>
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required
+                        autocomplete="new-password" minlength="8" aria-required="true" aria-describedby="password-hint">
+                    <small id="password-hint"
+                        style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; display: block;">Mínimo
+                        8 caracteres</small>
                 </div>
                 <div>
                     <label for="confirm-password">Confirmar senha</label>
-                    <input 
-                        type="password" 
-                        id="confirm-password" 
-                        name="confirm-password" 
-                        placeholder="Confirme sua senha" 
-                        required
-                        autocomplete="new-password"
-                        minlength="8"
-                        aria-required="true"
-                    >
+                    <input type="password" id="confirm-password" name="confirm-password"
+                        placeholder="Confirme sua senha" required autocomplete="new-password" minlength="8"
+                        aria-required="true">
                 </div>
                 <button type="submit">Cadastrar-se</button>
             </form>
             <div class="hr"></div>
             <div class="form-footer">
-                Já tem uma conta? <a href="./">Faça login</a>
+                Já tem uma conta? <a href="../../index.html">Faça login</a>
             </div>
         </div>
     </main>
 </body>
+
 </html>

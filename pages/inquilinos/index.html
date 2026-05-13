@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Gestão de Inquilinos no KLSystem. Cadastre, edite e visualize todos os seus inquilinos.">
+    <title>Inquilinos - KLSystem</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/sidebar.css">
+    <link rel="stylesheet" href="../../css/buttons.css">
+    <link rel="stylesheet" href="../../css/cards.css">
+    <link rel="stylesheet" href="../../css/tables.css">
+    <link rel="stylesheet" href="../../css/badge.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-toggle">
+    <label for="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </label>
+    <div class="sidebar-overlay"></div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>KL<span>System</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../dashboard/index.html">Dashboard</a></li>
+                <li><a href="../imoveis/index.html">Imóveis</a></li>
+                <li class="active"><a href="../inquilinos/index.html">Inquilinos</a></li>
+                <li><a href="../contratos/index.html">Contratos</a></li>
+                <li><a href="../pagamentos/index.html">Pagamentos</a></li>
+                <li class="profile"><a href="../perfil/index.html">Meu Perfil</a></li>
+                <li class="logout"><a href="../../index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Gestão de Inquilinos</h2>
+            <div class="user-info">
+                <span>Olá, Administrador</span>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <section class="form-section">
+                <h4>Cadastrar / Editar Inquilino</h4>
+                <form action="#">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome / Razão Social</label>
+                            <input type="text" id="nome" placeholder="Nome Completo ou Empresa">
+                        </div>
+                        <div class="form-group">
+                            <label for="documento">CPF / CNPJ</label>
+                            <input type="text" id="documento" placeholder="000.000.000-00">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+                    <div class="form-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="dashboard-details">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Lista de Inquilinos</h3>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome/Razão Social</th>
+                                    <th>Documento</th>
+                                    <th>Telefone</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>João Silva</td>
+                                    <td>111.222.333-44</td>
+                                    <td>(11) 98765-4321</td>
+                                    <td>
+                                        <button class="btn btn-small btn-edit">Editar</button>
+                                        <button class="btn btn-small btn-danger">Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Empresa XYZ Ltda</td>
+                                    <td>12.345.678/0001-99</td>
+                                    <td>(11) 3333-4444</td>
+                                    <td>
+                                        <button class="btn btn-small btn-edit">Editar</button>
+                                        <button class="btn btn-small btn-danger">Excluir</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

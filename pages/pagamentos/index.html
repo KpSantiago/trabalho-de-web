@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gerencie todos os pagamentos de aluguel no KLSystem. Visualize pagamentos pendentes, pagos no mês, em atraso e configure encargos.">
-    <meta name="keywords" content="pagamentos, aluguel, gestão financeira, KLSystem, inquilinos, encargos, multa, juros">
+    <meta name="description"
+        content="Gerencie todos os pagamentos de aluguel no KLSystem. Visualize pagamentos pendentes, pagos no mÃªs, em atraso e configure encargos.">
+    <meta name="keywords"
+        content="pagamentos, aluguel, gestÃ£o financeira, KLSystem, inquilinos, encargos, multa, juros">
     <meta name="author" content="KLSystem">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Controle de Pagamentos - KLSystem">
@@ -24,10 +27,12 @@
     <link rel="stylesheet" href="../../css/forms.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <input type="checkbox" class="sidebar-checkbox" id="sidebar-toggle">
     <label for="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -41,13 +46,13 @@
         </div>
         <nav>
             <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="imoveis.html">Imóveis</a></li>
-                <li><a href="inquilinos.html">Inquilinos</a></li>
-                <li><a href="../contratos/">Contratos</a></li>
-                <li class="active"><a href="pagamentos.html">Pagamentos</a></li>
-                <li class="profile"><a href="perfil.html">Meu Perfil</a></li>
-                <li class="logout"><a href="../auth/">Sair</a></li>
+                <li><a href="../dashboard/index.html">Dashboard</a></li>
+                <li><a href="../imoveis/index.html">Imóveis</a></li>
+                <li><a href="../inquilinos/index.html">Inquilinos</a></li>
+                <li><a href="../contratos/index.html">Contratos</a></li>
+                <li class="active"><a href="../pagamentos/index.html">Pagamentos</a></li>
+                <li class="profile"><a href="../perfil/index.html">Meu Perfil</a></li>
+                <li class="logout"><a href="../../index.html">Sair</a></li>
             </ul>
         </nav>
     </aside>
@@ -56,7 +61,7 @@
         <header class="topbar">
             <h2>Controle de Pagamentos</h2>
             <div class="user-info">
-                <span>Olá, Administrador</span>
+                <span>OlÃ¡, Administrador</span>
             </div>
         </header>
 
@@ -66,13 +71,13 @@
                     <div class="card-info">
                         <h3>Pagamentos Pendentes</h3>
                         <p class="number">23</p>
-                        <span class="detail">Aguardando liquidação</span>
+                        <span class="detail">Aguardando liquidaÃ§Ã£o</span>
                     </div>
                 </div>
 
                 <div class="card bg-green">
                     <div class="card-info">
-                        <h3>Pagos no Mês</h3>
+                        <h3>Pagos no MÃªs</h3>
                         <p class="number">45</p>
                         <span class="detail">Total arrecadado</span>
                     </div>
@@ -92,7 +97,8 @@
                     <div class="table-header">
                         <h3>Pagamentos Pendentes</h3>
                         <div class="table-actions">
-                            <a href="../configuracao-encargos/" class="btn btn-primary">Configurar Encargos</a>
+                            <a href="../configuracao-encargos/index.html" class="btn btn-primary">Configurar
+                                Encargos</a>
                         </div>
                     </div>
                     <div class="table-wrapper">
@@ -101,20 +107,20 @@
                                 <tr>
                                     <th>Parcela</th>
                                     <th>Inquilino</th>
-                                    <th>Imóvel</th>
+                                    <th>ImÃ³vel</th>
                                     <th>Vencimento</th>
                                     <th>Valor Original</th>
                                     <th>Multa</th>
                                     <th>Juros</th>
                                     <th>Valor Total</th>
                                     <th>Status</th>
-                                    <th>Ações</th>
+                                    <th>AÃ§Ãµes</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>01/12</td>
-                                    <td>João Silva</td>
+                                    <td>JoÃ£o Silva</td>
                                     <td>Apto 402 - Centro</td>
                                     <td>15/01/2026</td>
                                     <td>R$ 1.500,00</td>
@@ -180,4 +186,5 @@
         </div>
     </main>
 </body>
+
 </html>
