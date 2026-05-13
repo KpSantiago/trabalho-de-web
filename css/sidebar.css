@@ -123,6 +123,7 @@
 .sidebar-checkbox {
     display: none;
 }
+
 .sidebar-toggle {
     display: none;
 }
@@ -133,10 +134,12 @@
         height: auto;
         padding-bottom: 1rem;
     }
+
     .sidebar nav ul {
         flex-wrap: wrap;
         justify-content: center;
     }
+
     .sidebar nav ul li.profile {
         border-left: none;
         padding-left: 0;

@@ -40,7 +40,8 @@
 table {
     min-width: 100%;
     border-collapse: separate;
-    border-spacing: 0 1rem; /* Creates gap between rows */
+    border-spacing: 0 1rem;
+    /* Creates gap between rows */
     overflow: auto;
     border: none;
 }
@@ -111,21 +112,21 @@ table td.actions .btn {
     .table-container {
         padding: 1rem;
     }
-    
+
     .table-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
-    
+
     .table-actions {
         width: 100%;
     }
-    
+
     .table-actions .btn {
         flex: 1;
     }
-    
+
     table th,
     table td {
         padding: 0.75rem 0.5rem;

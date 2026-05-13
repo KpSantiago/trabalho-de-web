@@ -2,7 +2,8 @@
 .btn {
     padding: 0.75rem 1.5rem;
     border: 1px solid transparent;
-    border-radius: 8px; /* Smooth corners */
+    border-radius: 8px;
+    /* Smooth corners */
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
@@ -133,11 +134,11 @@
     .btn {
         width: 100%;
     }
-    
+
     .btn-group {
         flex-direction: column;
     }
-    
+
     .btn-group .btn {
         border-radius: 8px;
     }

@@ -58,11 +58,11 @@ main {
     padding: 3rem 4rem;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
 }
 
-.form-container > div:first-child {
+.form-container>div:first-child {
     margin-bottom: 3rem;
     text-align: left;
 }
@@ -84,7 +84,7 @@ main {
     font-weight: 300;
 }
 
-.form-container > div:not(:first-child) {
+.form-container>div:not(:first-child) {
     margin-bottom: 1.5rem;
 }
 
@@ -152,7 +152,7 @@ button[type="submit"]:active {
     display: flex;
     align-items: center;
     margin: 2.5rem 0;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -163,7 +163,7 @@ button[type="submit"]:active {
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .hr span {
@@ -268,6 +268,7 @@ button[type="submit"]:active {
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
