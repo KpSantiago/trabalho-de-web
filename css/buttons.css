@@ -34,7 +34,6 @@
 }
 
 .btn-secondary {
-    background: #fff;
     color: var(--text-primary);
     border: 1px solid var(--border);
 }
