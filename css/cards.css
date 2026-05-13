@@ -1,30 +1,33 @@
-/* Card Styles */
+/* Card Styles - Soft UI */
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    transition: all 0.2s ease;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
     flex: 1;
-    min-width: 350px;
+    min-width: 250px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 .card-header {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .card-header h3 {
     font-size: 1.25rem;
     color: var(--text-primary);
     margin: 0;
+    font-weight: 600;
+    text-transform: none;
 }
 
 .card-body {
@@ -32,72 +35,79 @@
 }
 
 .card-footer {
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
-/* Dashboard Cards */
+/* Dashboard Cards Layout Change */
 .dashboard-cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    flex-wrap: nowrap;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .dashboard-cards .card {
-    flex: 1;
-    min-width: 250px;
+    min-width: unset;
+    display: flex;
+    align-items: center;
 }
 
 .card-info {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card-info .text-content {
+    display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 
 .card-info h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
     margin: 0;
+    text-transform: none;
 }
 
 .card-info .number {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: white;
-    line-height: 1;
-    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0.25rem 0;
+    text-shadow: none;
 }
 
 .card-info .detail {
-    font-size: 0.875rem;
-    opacity: 0.9;
-    color: white;
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: var(--success);
     margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    display: block;
 }
 
-/* Gradient Cards */
-.bg-blue {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    border: none;
+/* Remove Solid Colors, use subtle indicators */
+.bg-blue, .bg-green, .bg-orange, .bg-purple {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
 }
-
-.bg-green {
-    background: linear-gradient(135deg, #10b981, #059669);
-    border: none;
-}
-
-.bg-orange {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    border: none;
-}
-
-.bg-purple {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    border: none;
-}
+.bg-blue { border-left: 4px solid #5a67d8; }
+.bg-green { border-left: 4px solid #48bb78; }
+.bg-orange { border-left: 4px solid #ed8936; }
+.bg-purple { border-left: 4px solid #9f7aea; }
+.bg-blue .card-info h3, .bg-blue .card-info .number { color: var(--text-primary); text-shadow: none; border-color: transparent; background: transparent; }
+.bg-green .card-info h3, .bg-green .card-info .number { color: var(--text-primary); }
+.bg-orange .card-info h3, .bg-orange .card-info .number { color: var(--text-primary); }
+.bg-purple .card-info h3, .bg-purple .card-info .number { color: var(--text-primary); text-shadow: none; border-color: transparent; background: transparent; }
 
 .bg-red {
     background: linear-gradient(135deg, #ef4444, #dc2626);

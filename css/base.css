@@ -1,4 +1,4 @@
-/* Base Styles - Dark Theme */
+/* Base Styles - Elegant Dark Glass Theme */
 * {
     margin: 0;
     padding: 0;
@@ -6,26 +6,44 @@
 }
 
 :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-card: #161616;
-    --text-primary: #ffffff;
+    /* Colors - Midnight Neon Teal */
+    --bg-primary: #09090b;
+    --bg-secondary: rgba(24, 24, 27, 0.4);
+    --bg-card: rgba(15, 15, 17, 0.6);
+    --text-primary: #f4f4f5;
     --text-secondary: #a1a1aa;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --border: #27272a;
+    --accent: #2dd4bf;
+    --accent-hover: #14b8a6;
+    --border: rgba(161, 161, 170, 0.15);
     --success: #10b981;
     --error: #ef4444;
     --warning: #f59e0b;
-    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    
+    /* Neon Glow & Soft Shadows */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+
+    /* Spacing & Layout */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-primary);
+    background-image: radial-gradient(circle at 15% 50%, rgba(45, 212, 191, 0.12), transparent 25%),
+                      radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12), transparent 25%);
+    background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+    font-weight: 300;
 }
 
 /* Layout */
@@ -34,58 +52,93 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin-top: 80px; /* Offset for topbar navigation */
+    margin-left: 0 !important; /* Override sidebar margin */
 }
 
 .topbar {
-    background: var(--bg-card);
-    padding: 1.5rem 2rem;
+    background: transparent;
+    padding: 1rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border);
+    border-bottom: none;
+    margin-top: 1rem;
 }
 
 .topbar h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 400;
+    text-shadow: none;
+    letter-spacing: normal;
 }
 
 .user-info {
     display: flex;
     align-items: center;
     gap: 1rem;
+    background: var(--bg-card);
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
 }
 
 .user-info span {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-weight: 500;
 }
 
 .dashboard-scroll {
     flex: 1;
     overflow-y: auto;
-    padding: 2rem;
+    padding: 0 2.5rem 2.5rem 2.5rem;
+    background: transparent;
 }
 
 .dashboard-details {
     display: flex;
-    gap: 2rem;
-    flex-wrap: nowrap;
+    gap: 2.5rem;
+    flex-wrap: wrap; /* Change layout to wrap on smaller screens */
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 600;
+    text-transform: none;
 }
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.125rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
 
 p {
     color: var(--text-secondary);
@@ -125,15 +178,15 @@ a:hover {
     .topbar {
         padding: 1rem;
     }
-    
+
     .topbar h2 {
         font-size: 1.25rem;
     }
-    
+
     .dashboard-scroll {
         padding: 1rem;
     }
-    
+
     .dashboard-details {
         flex-direction: column;
     }
@@ -141,6 +194,7 @@ a:hover {
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
