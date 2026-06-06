@@ -56,25 +56,36 @@
 
         <div class="dashboard-scroll">
             <section class="form-section">
-                <h4>Cadastrar / Editar Inquilino</h4>
-                <form action="#">
+                <h4 id="form-title">Cadastrar Inquilino</h4>
+                <div id="feedback" class="feedback" aria-live="polite"></div>
+                <form id="inquilino-form" action="#">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nome">Nome / Razão Social</label>
-                            <input type="text" id="nome" placeholder="Nome Completo ou Empresa">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" placeholder="Nome completo" minlength="3" required>
                         </div>
                         <div class="form-group">
-                            <label for="documento">CPF / CNPJ</label>
-                            <input type="text" id="documento" placeholder="000.000.000-00">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" placeholder="000.000.000-00" minlength="11" maxlength="14" required>
                         </div>
                         <div class="form-group">
                             <label for="telefone">Telefone</label>
-                            <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                            <input type="tel" id="telefone" placeholder="(00) 00000-0000" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" placeholder="email@exemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="renda">Renda mensal</label>
+                            <input type="number" id="renda" min="0.01" step="0.01" placeholder="R$ 0,00" required>
                         </div>
                     </div>
                     <div class="form-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btn-salvar">Salvar</button>
+                        <button type="button" class="btn btn-danger" id="btn-cancelar-edicao">Cancelar</button>
                     </div>
                 </form>
             </section>
@@ -88,31 +99,15 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Nome/Razão Social</th>
-                                    <th>Documento</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>E-mail</th>
                                     <th>Telefone</th>
+                                    <th>Renda</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>João Silva</td>
-                                    <td>111.222.333-44</td>
-                                    <td>(11) 98765-4321</td>
-                                    <td>
-                                        <button class="btn btn-small btn-edit">Editar</button>
-                                        <button class="btn btn-small btn-danger">Excluir</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Empresa XYZ Ltda</td>
-                                    <td>12.345.678/0001-99</td>
-                                    <td>(11) 3333-4444</td>
-                                    <td>
-                                        <button class="btn btn-small btn-edit">Editar</button>
-                                        <button class="btn btn-small btn-danger">Excluir</button>
-                                    </td>
-                                </tr>
+                            <tbody id="inquilinos-tbody">
                             </tbody>
                         </table>
                     </div>
@@ -120,6 +115,11 @@
             </section>
         </div>
     </main>
+    <script src="../../js/http.js"></script>
+    <script src="../../js/session.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/page.js"></script>
+    <script src="inquilinos.js"></script>
 </body>
 
 </html>

@@ -140,6 +140,45 @@
     flex: 0 0 auto;
 }
 
+.feedback {
+    display: none;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.feedback.success {
+    display: block;
+    color: #065f46;
+    background-color: #d1fae5;
+    border: 1px solid #6ee7b7;
+}
+
+.feedback.error {
+    display: block;
+    color: #991b1b;
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+}
+
+.feedback.info {
+    display: block;
+    color: #1e3a8a;
+    background-color: #dbeafe;
+    border: 1px solid #93c5fd;
+}
+
+.form-group select {
+    color: var(--text-primary);
+    background-color: transparent;
+}
+
+.form-group option {
+    color: #111827;
+    background-color: #ffffff;
+}
+
 /* Checkbox and Radio */
 .form-group .checkbox-group,
 .form-group .radio-group {

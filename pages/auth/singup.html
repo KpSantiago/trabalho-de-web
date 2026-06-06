@@ -32,7 +32,7 @@
                 <h1>Bem-vindo ao <span>KLSystem</span>!</h1>
                 <p>Crie sua conta e comece a transformar sua produtividade hoje.</p>
             </div>
-            <form action="../dashboard/index.html" method="POST">
+            <form id="signup-form">
                 <div class="form-group">
                     <label for="username">Nome de Usuário</label>
                     <input type="text" id="username" name="username" placeholder="seu nome" required>
@@ -43,20 +43,33 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required
-                        autocomplete="new-password" minlength="8" aria-required="true" aria-describedby="password-hint">
+                    <div style="position: relative;">
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required
+                            autocomplete="new-password" minlength="8" aria-required="true"
+                            aria-describedby="password-hint" style="width: 100%; padding-right: 60px;">
+                        <button type="button" id="toggle-password"
+                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.9rem; font-weight: bold; color: var(--text-secondary);">ver</button>
+                    </div>
                     <small id="password-hint"
                         style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; display: block;">Mínimo
                         8 caracteres</small>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="confirm-password">Confirmar senha</label>
-                    <input type="password" id="confirm-password" name="confirm-password"
-                        placeholder="Confirme sua senha" required autocomplete="new-password" minlength="8"
-                        aria-required="true">
+                    <div style="position: relative;">
+                        <input type="password" id="confirm-password" name="confirm-password"
+                            placeholder="Confirme sua senha" required autocomplete="new-password" minlength="8"
+                            aria-required="true" style="width: 100%; padding-right: 60px;">
+                        <button type="button" id="toggle-confirm-password"
+                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.9rem; font-weight: bold; color: var(--text-secondary);">ver</button>
+                    </div>
                 </div>
+                <div id="signup-error" style="color: red; display: none; font-size: 0.9rem; margin-bottom: 1rem;"></div>
                 <button type="submit">Cadastrar-se</button>
             </form>
+            <script src="../../js/http.js"></script>
+            <script src="../../js/session.js"></script>
+            <script src="signup.js"></script>
             <div class="hr"></div>
             <div class="form-footer">
                 Já tem uma conta? <a href="../../index.html">Faça login</a>

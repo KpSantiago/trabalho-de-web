@@ -56,61 +56,51 @@
 
         <div class="dashboard-scroll">
             <section class="form-section">
-                <h4>Cadastrar / Editar Imóvel</h4>
-                <form action="#">
+                <h4 id="form-title">Cadastrar Imóvel</h4>
+                <div id="feedback" class="feedback" aria-live="polite"></div>
+                <form id="imovel-form" action="#">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="titulo">Título/Identificação</label>
-                            <input type="text" id="titulo" placeholder="Ex: Apto 402 - Centro">
+                            <label for="apelido-imovel">Título/Identificação</label>
+                            <input type="text" id="apelido-imovel" placeholder="Ex: Apto 402 - Centro" minlength="3" required>
                         </div>
                         <div class="form-group">
-                            <label for="tipo">Tipo</label>
-                            <select id="tipo">
-                                <option>Apartamento</option>
-                                <option>Casa</option>
-                                <option>Sala Comercial</option>
+                            <label for="tipo-imovel">Tipo</label>
+                            <select id="tipo-imovel" required>
+                                <option value="Apartamento">Apartamento</option>
+                                <option value="Casa">Casa</option>
+                                <option value="Sala Comercial">Sala Comercial</option>
+                                <option value="Kitnet">Kitnet</option>
+                                <option value="Galpão">Galpão</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="valor">Valor do Aluguel</label>
-                            <input type="number" id="valor" placeholder="R$ 0,00">
+                            <label for="valor-aluguel">Valor do Aluguel</label>
+                            <input type="number" id="valor-aluguel" min="0.01" step="0.01" placeholder="R$ 0,00" required>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="cep">CEP</label>
-                            <input type="text" id="cep" placeholder="00000-000">
-                        </div>
                         <div class="form-group" style="flex: 2;">
-                            <label for="logradouro">Logradouro</label>
-                            <input type="text" id="logradouro" placeholder="Rua, Avenida, etc.">
+                            <label for="endereco">Endereço completo</label>
+                            <input type="text" id="endereco" placeholder="Rua, número, bairro, cidade - UF" required>
                         </div>
                         <div class="form-group">
-                            <label for="numero">Número</label>
-                            <input type="text" id="numero" placeholder="Nº">
+                            <label for="status">Status</label>
+                            <select id="status" required>
+                                <option value="Disponivel">Disponível</option>
+                                <option value="Alugado">Alugado</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="complemento">Complemento</label>
-                            <input type="text" id="complemento" placeholder="Apto, Bloco, etc.">
-                        </div>
-                        <div class="form-group">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" id="bairro" placeholder="Bairro">
-                        </div>
-                        <div class="form-group">
-                            <label for="cidade">Cidade</label>
-                            <input type="text" id="cidade" placeholder="Cidade">
-                        </div>
-                        <div class="form-group" style="flex: 0.5;">
-                            <label for="uf">UF</label>
-                            <input type="text" id="uf" placeholder="UF" maxlength="2">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" id="descricao" placeholder="Informações adicionais (opcional)">
                         </div>
                     </div>
                     <div class="form-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btn-salvar">Salvar</button>
+                        <button type="button" class="btn btn-danger" id="btn-cancelar-edicao">Cancelar</button>
                     </div>
                 </form>
             </section>
@@ -131,27 +121,7 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Apto 402 - Centro</td>
-                                    <td>Apartamento</td>
-                                    <td>R$ 1.500,00</td>
-                                    <td><span class="badge success">Alugado</span></td>
-                                    <td>
-                                        <button class="btn btn-small btn-edit">Editar</button>
-                                        <button class="btn btn-small btn-danger">Excluir</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sala Comercial 05</td>
-                                    <td>Sala Comercial</td>
-                                    <td>R$ 3.000,00</td>
-                                    <td><span class="badge warning">Vago</span></td>
-                                    <td>
-                                        <button class="btn btn-small btn-edit">Editar</button>
-                                        <button class="btn btn-small btn-danger">Excluir</button>
-                                    </td>
-                                </tr>
+                            <tbody id="imoveis-tbody">
                             </tbody>
                         </table>
                     </div>
@@ -159,6 +129,11 @@
             </section>
         </div>
     </main>
+    <script src="../../js/http.js"></script>
+    <script src="../../js/session.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/page.js"></script>
+    <script src="imoveis.js"></script>
 </body>
 
 </html>
