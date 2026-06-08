@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let diasRestantes = Math.ceil((dataFim - dataAtual) / (1000 * 60 * 60 * 24));
         diasRestantes = diasRestantes < 0 ? 0 : diasRestantes;
 
-        document.querySelector('.value-rent').textContent = contrato.valor_aluguel;
+        document.querySelector('.value-rent').textContent = contrato.valor_aluguel.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         document.querySelector('.due-day').textContent = contrato.dia_vencimento;
         document.querySelector('.start-date').textContent = new Date(contrato.data_inicio).toLocaleDateString('pt-BR');
         document.querySelector('.end-date').textContent = dataFim.toLocaleDateString('pt-BR');
