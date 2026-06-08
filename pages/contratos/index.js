@@ -38,7 +38,7 @@ loadContratos().then(contratos => {
             <td>${contrato.id}</td>
             <td>${contrato.inquilino.nome}</td>
             <td>${contrato.imovel.apelido_imovel} - ${contrato.imovel.endereco}</td>
-            <td>${contrato.valor_aluguel}</td>
+            <td>${contrato.valor_aluguel.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
             <td>${new Date(contrato.data_inicio).toLocaleDateString('pt-BR')}</td>
             <td>${new Date(contrato.data_fim).toLocaleDateString('pt-BR')}</td>
             <td><span class="badge success">Ativo</span></td>
