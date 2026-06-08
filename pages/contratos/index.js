@@ -41,7 +41,7 @@ loadContratos().then(contratos => {
             <td>${contrato.valor_aluguel.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
             <td>${new Date(contrato.data_inicio).toLocaleDateString('pt-BR')}</td>
             <td>${new Date(contrato.data_fim).toLocaleDateString('pt-BR')}</td>
-            <td><span class="badge success">Ativo</span></td>
+            <td><span class="badge ${contrato.status === 'Ativo' ? 'success' : contrato.status === 'Encerrado' ? 'warning' : 'error'}">${contrato.status}</span></td>
             <td><a class="btn btn-secondary btn-small" href="../contrato/?id=${contrato.id}">Acessar</a>
             </td>
         `;

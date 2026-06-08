@@ -37,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.badge').textContent = contrato.status;
         switch(contrato.status.toUpperCase()) {
             case 'CANCELADO':
+                document.querySelector('.badge').className = 'badge error';
+                break;
             case 'ENCERRADO':
-                document.querySelector('.badge').className = 'badge danger';
+                document.querySelector('.badge').className = 'badge warning';
                 break;
             default:
                 document.querySelector('.badge').className = 'badge success';
@@ -52,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.badge').className = 'badge warning';
             paragraph.style.color = 'var(--warning)';
         } else if (diasRestantes <= 0) {
-            document.querySelector('.badge').className = 'badge danger';
-            paragraph.style.color = 'var(--danger)';
+            document.querySelector('.badge').className = 'badge error';
+            paragraph.style.color = 'var(--error)';
         } else {
             document.querySelector('.badge').className = 'badge success';
             paragraph.style.color = 'var(--success)';
