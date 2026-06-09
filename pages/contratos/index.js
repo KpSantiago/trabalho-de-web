@@ -64,12 +64,30 @@ function renderPagination(paginationData) {
             <span>Total: ${state.totalItems} itens</span>
         </div>
         <div class="pagination-controls">
+            <select class="pagination-limit" id="pagination-limit">
+                <option value="10" ${state.limit === 10 ? 'selected' : ''}>10 por página</option>
+                <option value="20" ${state.limit === 20 ? 'selected' : ''}>20 por página</option>
+                <option value="50" ${state.limit === 50 ? 'selected' : ''}>50 por página</option>
+                <option value="100" ${state.limit === 100 ? 'selected' : ''}>100 por página</option>
+            </select>
             <button class="btn btn-secondary btn-small" id="btn-first" ${!paginationData.previous ? 'disabled' : ''}>Primeira</button>
             <button class="btn btn-secondary btn-small" id="btn-previous" ${!paginationData.previous ? 'disabled' : ''}>Anterior</button>
             <button class="btn btn-secondary btn-small" id="btn-next" ${!paginationData.next ? 'disabled' : ''}>Próxima</button>
             <button class="btn btn-secondary btn-small" id="btn-last" ${!paginationData.next ? 'disabled' : ''}>Última</button>
         </div>
     `;
+
+    document.getElementById('pagination-limit').addEventListener('change', (e) => {
+        state.limit = parseInt(e.target.value);
+        state.currentPage = 0;
+        const skip = 0;
+        loadContratos(skip, state.limit).then(data => {
+            renderTable(data.content);
+            renderPagination(data);
+        }).catch(error => {
+            console.error("Erro ao carregar contratos: ", error);
+        });
+    });
 
     document.getElementById('btn-first').addEventListener('click', () => goToPage(0));
     document.getElementById('btn-previous').addEventListener('click', () => goToPage(state.currentPage - 1));
