@@ -7,6 +7,24 @@ async function loadPagamento(id) {
     return response.json();
 }
 
+async function confirmarPagamento(id) {
+    const response = await fetch(`http://127.0.0.1:8000/pagamentos/${id}/confirmar`, {
+        method: 'PUT'
+    });
+    
+    return response.json();
+}
+
+document.querySelector('.btn-confirm').addEventListener('click', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    
+    confirmarPagamento(id).then(() => {
+        window.location.reload();
+    }).catch(() => {
+        alert('Erro ao confirmar pagamento');
+    });
+});
 
 window.addEventListener('DOMContentLoaded', () => {
     const proprietario = getLoggedOwner();
@@ -48,8 +66,17 @@ window.addEventListener('DOMContentLoaded', () => {
             status.classList.add('error');
             pAtraso.style.color = 'var(--error)';
         } else {
+            status.classList.add('warning');
+            pAtraso.style.color = 'var(--warning)';
+        }
+
+        if (pagamento.status.toLowerCase() === 'pago') {
+            document.querySelector('.btn-confirm').setAttribute('disabled', 'true');
+            document.querySelector('.btn-confirm').style.opacity = '0.5';
+
+            status.classList.remove('warning');
+            status.classList.remove('error');
             status.classList.add('success');
-            pAtraso.style.color = 'var(--success)';
         }
 
     }).catch(error => {

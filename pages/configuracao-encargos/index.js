@@ -30,11 +30,7 @@ document.querySelector('form').addEventListener('submit',  (e) => {
         id_proprietario: proprietario.id
     };
     sendRequest(data).then(response => {
-        if (response.success) {
-            alert('Configurações salvas com sucesso!');
-        } else {
-            alert('Erro ao salvar configurações!');
-        }
+        alert("Configurações salvas com sucesso!");
     }).catch(() => {
         alert('Erro ao salvar configurações!');
     });

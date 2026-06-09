@@ -6,7 +6,10 @@ async function loadContrato(id) {
 
 async function encerrarContrato(id) {
     const data = await fetch(`http://127.0.0.1:8000/contratos/${id}/encerrar`, {
-        method: 'POST'
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
 
     return await data.json();
@@ -30,28 +33,22 @@ function setupContrato(id) {
         document.querySelector('.name-property').textContent = contrato.imovel.apelido_imovel;
         document.querySelector('.address-property').textContent = contrato.imovel.endereco;
         document.querySelector('.status-property').textContent = contrato.imovel.status;
-
         document.querySelector('.badge').textContent = contrato.status;
-        switch(contrato.status.toUpperCase()) {
-            case 'CANCELADO':
-                document.querySelector('.badge').className = 'badge error';
-                break;
-            case 'ENCERRADO':
-                document.querySelector('.badge').className = 'badge warning';
-                break;
-            default:
-                document.querySelector('.badge').className = 'badge success';
-                break;
-        }
 
         const paragraph = document.querySelector('.days-left');
         paragraph.textContent = `Vence em ${diasRestantes} dias`;
         
-        if (diasRestantes <= 30) {
+        if (diasRestantes <= 30 || contrato.status.toUpperCase() === 'ENCERRADO') {
             document.querySelector('.badge').className = 'badge warning';
+            if (contrato.status.toUpperCase() === 'ENCERRADO') {
+                paragraph.textContent = 'Contrato Encerrado';
+            }
             paragraph.style.color = 'var(--warning)';
-        } else if (diasRestantes <= 0) {
+        } else if (diasRestantes <= 0 || contrato.status.toUpperCase() === 'CANCELADO') {
             document.querySelector('.badge').className = 'badge error';
+            if (contrato.status.toUpperCase() === 'CANCELADO') {
+                paragraph.textContent = 'Contrato Cancelado';
+            }
             paragraph.style.color = 'var(--error)';
         } else {
             document.querySelector('.badge').className = 'badge success';
