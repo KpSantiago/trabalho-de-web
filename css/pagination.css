@@ -1,8 +1,9 @@
 .pagination-container {
+    max-width: 98%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.5rem;
+    margin: 1.5rem auto 0 auto;
     padding: 1rem;
     background: var(--bg-secondary);
     border-radius: 8px;

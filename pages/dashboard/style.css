@@ -4,6 +4,24 @@
     margin-top: 2rem;
 }
 
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    box-shadow: none;
+}
+
+.btn-small:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
 @media (max-width: 900px) {
     .dashboard-details {
         flex-direction: column;

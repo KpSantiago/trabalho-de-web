@@ -38,12 +38,14 @@
 }
 
 table {
-    min-width: 100%;
+    margin: 0 auto;
+    min-width: 98%;
     border-collapse: separate;
     border-spacing: 0 1rem;
     /* Creates gap between rows */
     overflow: auto;
     border: none;
+    text-align: center;
 }
 
 table th {
@@ -105,6 +107,10 @@ table td.actions .btn {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
     border-radius: 20px;
+}
+
+table tfoot {
+    width: 100%;
 }
 
 /* Responsive Table */
