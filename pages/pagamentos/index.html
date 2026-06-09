@@ -61,7 +61,7 @@
         <header class="topbar">
             <h2>Controle de Pagamentos</h2>
             <div class="user-info">
-                <span>OlÃ¡, Administrador</span>
+                <span>Olá, Administrador</span>
             </div>
         </header>
 
@@ -70,15 +70,15 @@
                 <div class="card bg-blue">
                     <div class="card-info">
                         <h3>Pagamentos Pendentes</h3>
-                        <p class="number">23</p>
-                        <span class="detail">Aguardando liquidaÃ§Ã£o</span>
+                        <p class="number" id="pending-count">0</p>
+                        <span class="detail">Aguardando Confirmação</span>
                     </div>
                 </div>
 
                 <div class="card bg-green">
                     <div class="card-info">
-                        <h3>Pagos no MÃªs</h3>
-                        <p class="number">45</p>
+                        <h3>Pagos no Mês</h3>
+                        <p class="number" id="paid-this-month">0</p>
                         <span class="detail">Total arrecadado</span>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="card bg-orange">
                     <div class="card-info">
                         <h3>Em Atraso</h3>
-                        <p class="number">8</p>
+                        <p class="number" id="overdue-count">0</p>
                         <span class="detail">Com encargos calculados</span>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
             <section class="dashboard-details">
                 <div class="table-container">
                     <div class="table-header">
-                        <h3>Pagamentos Pendentes</h3>
+                        <h3>Pagamentos</h3>
                         <div class="table-actions">
                             <a href="../configuracao-encargos/index.html" class="btn btn-primary">Configurar
                                 Encargos</a>
@@ -107,18 +107,18 @@
                                 <tr>
                                     <th>Parcela</th>
                                     <th>Inquilino</th>
-                                    <th>ImÃ³vel</th>
+                                    <th>Imóvel</th>
                                     <th>Vencimento</th>
                                     <th>Valor Original</th>
                                     <th>Multa</th>
                                     <th>Juros</th>
                                     <th>Valor Total</th>
                                     <th>Status</th>
-                                    <th>AÃ§Ãµes</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody class="pagamentos-tboy">
+                                <!-- <tr>
                                     <td>01/12</td>
                                     <td>JoÃ£o Silva</td>
                                     <td>Apto 402 - Centro</td>
@@ -182,7 +182,7 @@
                                     <td><span class="badge warning">Atrasado</span></td>
                                     <td><a class="btn btn-secondary btn-small"
                                             href="../pagamento/index.html">Acessar</a></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -192,6 +192,7 @@
     </main>
     <script src="../../js/session.js"></script>
     <script src="../../js/page.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>

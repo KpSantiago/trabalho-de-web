@@ -1,5 +1,6 @@
 // Métricas
 async function loadMetricas() {
+    // const data = await fetch("http://127.0.0.1:8000/contratos/metrics/geral?id_proprietario=null"); // get from session
     const data = await fetch("http://127.0.0.1:8000/contratos/metrics/geral");
     
     return await data.json();
@@ -19,6 +20,7 @@ loadMetricas().then(metricas => {
 
 // TABELA - listagem de contratos
 async function loadContratos() {
+    // const data = await fetch("http://127.0.0.1:8000/contratos?id_proprietario=null"); // get from session
     const data = await fetch("http://127.0.0.1:8000/contratos");
 
     return await data.json();

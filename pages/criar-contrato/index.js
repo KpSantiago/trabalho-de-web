@@ -84,6 +84,7 @@ form.addEventListener('submit', (e) => {
         data_fim: document.querySelector('#dataVencimento').value,
         valor_aluguel: parseFloat(document.querySelector('#valorAluguel').value),
         dia_vencimento: parseInt(document.querySelector('#diaVencimento').value),
+        id_proprietario: null // TODO: Get from session
     };
 
     sendRequest(formData).then((response) => {

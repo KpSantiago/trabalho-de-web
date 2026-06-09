@@ -72,15 +72,15 @@
                             <h4>Dados do Inquilino</h4>
                             <div class="info-row">
                                 <span class="label">Nome:</span>
-                                <span class="value">João Silva</span>
+                                <span class="value" id="nome-inquilino"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">CPF:</span>
-                                <span class="value">123.456.789-00</span>
+                                <span class="value" id="cpf-inquilino"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Telefone:</span>
-                                <span class="value">(11) 99999-9999</span>
+                                <span class="value" id="telefone-inquilino"></span>
                             </div>
                         </div>
 
@@ -88,11 +88,11 @@
                             <h4>Dados do Imóvel</h4>
                             <div class="info-row">
                                 <span class="label">Imóvel:</span>
-                                <span class="value">Apto 402 - Centro</span>
+                                <span class="value" id="imovel"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Endereço:</span>
-                                <span class="value">Rua das Flores, 402</span>
+                                <span class="value" id="endereco"></span>
                             </div>
                         </div>
 
@@ -100,33 +100,33 @@
                             <h4>Dados do Pagamento</h4>
                             <div class="info-row">
                                 <span class="label">Parcela:</span>
-                                <span class="value">01/12</span>
+                                <span class="value" id="parcela"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Vencimento:</span>
-                                <span class="value">15/01/2026</span>
+                                <span class="value" id="vencimento"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Valor Original:</span>
-                                <span class="value">R$ 1.500,00</span>
+                                <span class="value" id="valor-original"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Multa:</span>
-                                <span class="value">R$ 30,00</span>
+                                <span class="value" id="multa"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Juros:</span>
-                                <span class="value">R$ 18,00</span>
+                                <span class="value" id="juros"></span>
                             </div>
                             <div class="info-row total">
                                 <span class="label">Valor Total:</span>
-                                <span class="value">R$ 1.548,00</span>
+                                <span class="value" id="valor-total"></span>
                             </div>
                         </div>
 
                         <div class="form-section" style="margin-bottom: 0;">
-                            <h4 style="margin-bottom: 0;">Status <span class="badge warning">Atrasado</span></h4>
-                            <p style="color: var(--warning); font-size: 0.95rem; font-weight: 500; margin-top: 0.5rem;">15 dias de atraso</p>
+                            <h4 style="margin-bottom: 0;">Status <span class="badge" id="status"></span></h4>
+                            <p style="font-size: 0.95rem; font-weight: 500; margin-top: 0.5rem;" id="dias-atraso"></p>
                         </div>
                     </div>
 
@@ -134,47 +134,11 @@
                         <button class="btn btn-primary btn-confirm">Confirmar Pagamento</button>
                     </div>
                 </div>
-
-                <div class="card" style="flex: 1; min-width: 400px; height: fit-content;">
-                    <div class="card-header">
-                        <h3>Informações</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="info-box">
-                            <strong>Detalhes do Pagamento:</strong>
-                            <ul>
-                                <li>Este pagamento refere-se ao aluguel de Janeiro/2026</li>
-                                <li>O pagamento está atrasado desde 15/01/2026</li>
-                                <li>Encargos calculados automaticamente conforme configuração</li>
-                                <li>Após a confirmação, o status será atualizado para "Pago"</li>
-                            </ul>
-                        </div>
-
-                        <h3>Resumo dos Valores</h3>
-                        <div class="current-config">
-                            <div class="config-item">
-                                <span>Valor Original:</span>
-                                <strong>R$ 1.500,00</strong>
-                            </div>
-                            <div class="config-item">
-                                <span>Multa (2%):</span>
-                                <strong>R$ 30,00</strong>
-                            </div>
-                            <div class="config-item">
-                                <span>Juros (15 dias):</span>
-                                <strong>R$ 18,00</strong>
-                            </div>
-                            <div class="config-item">
-                                <span>Valor Total:</span>
-                                <strong>R$ 1.548,00</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
         </div>
     </main>
     <script src="../../js/session.js"></script>
     <script src="../../js/page.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
