@@ -1,21 +1,18 @@
 async function loadContrato(id) {
     const data = await fetch(`http://127.0.0.1:8000/contratos/${id}`);
 
-    return data.json();
+    return await data.json();
 }
 
+async function encerrarContrato(id) {
+    const data = await fetch(`http://127.0.0.1:8000/contratos/${id}/encerrar`, {
+        method: 'POST'
+    });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    
-    if (!id) {
-        console.error("ID do contrato não fornecido");
-        window.location.href = "/trabalho-de-web/pages/contratos";
-        alert("ID do contrato não fornecido");
-        return;
-    }
+    return await data.json();
+}
 
+function setupContrato(id) {
     loadContrato(id).then(contrato => {
         const dataAtual = new Date();
         const dataFim = new Date(contrato.data_fim);
@@ -63,4 +60,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(error => {
         console.error("Erro ao carregar contrato: ", error);
     });
+}
+
+function setupEventListeners() {
+    const btnEncerrar = document.getElementById('btn-encerrar');
+
+    btnEncerrar.addEventListener('click', () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        
+        encerrarContrato(id).then(() => {
+            window.location.href = "/trabalho-de-web/pages/contratos";
+        }).catch(error => {
+            console.error("Erro ao encerrar contrato: ", error);
+            alert("Erro ao encerrar contrato");
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    
+    if (!id) {
+        console.error("ID do contrato não fornecido");
+        window.location.href = "/trabalho-de-web/pages/contratos";
+        alert("ID do contrato não fornecido");
+        return;
+    }
+
+    setupContrato(id);
+    setupEventListeners();
 });
+
+

@@ -1,7 +1,15 @@
+const { getLoggedOwner } = window.AppSession;
+const { requireOwnerOrRedirect } = window.AppPage;
+
 // METRICAS DE PAGAMENTOS
 async function loadMetrics() {
-    // const response = await fetch('http://127.0.0.1:8000/pagamentos/metrics/geral?id_proprietario=null'); // get from session
-    const response = await fetch('http://127.0.0.1:8000/pagamentos/metrics/geral');
+    const proprietario = getLoggedOwner();
+    
+    if (!requireOwnerOrRedirect(proprietario, (message) => console.error(message))) {
+        return;
+    }
+
+    const response = await fetch(`http://127.0.0.1:8000/pagamentos/metrics/geral?id_proprietario=${proprietario.id}`);
     
     return response.json();
 }
@@ -16,8 +24,13 @@ loadMetrics().then(data => {
 
 // TABELA DE PAGAMENTOS
 async function loadPayments() {
-    // const response = await fetch('http://127.0.0.1:8000/pagamentos?id_proprietario=null'); // get from session
-    const response = await fetch('http://127.0.0.1:8000/pagamentos');
+    const proprietario = getLoggedOwner();
+    
+    if (!requireOwnerOrRedirect(proprietario, (message) => console.error(message))) {
+        return;
+    }
+
+    const response = await fetch(`http://127.0.0.1:8000/pagamentos?id_proprietario=${proprietario.id}`);
     
     return response.json();
 }

@@ -1,7 +1,16 @@
+const { getLoggedOwner } = window.AppSession;
+const { requireOwnerOrRedirect } = window.AppPage;
+
 // Métricas
 async function loadMetricas() {
-    // const data = await fetch("http://127.0.0.1:8000/contratos/metrics/geral?id_proprietario=null"); // get from session
-    const data = await fetch("http://127.0.0.1:8000/contratos/metrics/geral");
+    const proprietario = getLoggedOwner();
+    console.log(proprietario    )
+    
+    if (!requireOwnerOrRedirect(proprietario, (message) => console.error(message))) {
+        return;
+    }
+
+    const data = await fetch(`http://127.0.0.1:8000/contratos/metrics/geral?id_proprietario=${proprietario.id}`);
     
     return await data.json();
 }
@@ -20,8 +29,13 @@ loadMetricas().then(metricas => {
 
 // TABELA - listagem de contratos
 async function loadContratos() {
-    // const data = await fetch("http://127.0.0.1:8000/contratos?id_proprietario=null"); // get from session
-    const data = await fetch("http://127.0.0.1:8000/contratos");
+    const proprietario = getLoggedOwner();
+    
+    if (!requireOwnerOrRedirect(proprietario, (message) => console.error(message))) {
+        return;
+    }
+
+    const data = await fetch(`http://127.0.0.1:8000/contratos?id_proprietario=${proprietario.id}`);
 
     return await data.json();
 }

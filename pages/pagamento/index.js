@@ -1,3 +1,6 @@
+const { getLoggedOwner } = window.AppSession;
+const { requireOwnerOrRedirect } = window.AppPage;
+
 async function loadPagamento(id) {
     const response = await fetch(`http://127.0.0.1:8000/pagamentos/${id}`);
   
@@ -6,6 +9,12 @@ async function loadPagamento(id) {
 
 
 window.addEventListener('DOMContentLoaded', () => {
+    const proprietario = getLoggedOwner();
+    
+    if (!requireOwnerOrRedirect(proprietario)) {
+        return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 

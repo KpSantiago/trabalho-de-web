@@ -1,11 +1,25 @@
+const { getLoggedOwner } = window.AppSession;
+const { requireOwnerOrRedirect } = window.AppPage;
+
 // INQUILINOS
 async function loadInquilinos() {
-    const dados = await fetch("http://127.0.0.1:8000/inquilinos/");
+    const proprietario = getLoggedOwner();
+
+    if (!requireOwnerOrRedirect(proprietario)) {
+        return;
+    }
+
+    const dados = await fetch(`http://127.0.0.1:8000/inquilinos/proprietario/${proprietario.id}`);
 
     return await dados.json();
 }
 
 async function loadInquilinoById(id) {
+    const proprietario = getLoggedOwner();
+
+    if (!requireOwnerOrRedirect(proprietario)) {
+        return;
+    }
     const dados = await fetch(`http://127.0.0.1:8000/inquilinos/${id}/`);
 
     return await dados.json();
@@ -30,12 +44,24 @@ select.addEventListener('change', () => {
 
 // IMÓVEIS
 async function loadImoveis() {
-    const dados = await fetch("http://127.0.0.1:8000/imoveis/");
+    const proprietario = getLoggedOwner();
+
+    if (!requireOwnerOrRedirect(proprietario)) {
+        return;
+    }
+
+    const dados = await fetch(`http://127.0.0.1:8000/imoveis/proprietario/${proprietario.id}`);
 
     return await dados.json();
 }
 
 async function loadImovelById(id) {
+    const proprietario = getLoggedOwner();
+
+    if (!requireOwnerOrRedirect(proprietario)) {
+        return;
+    }
+
     const dados = await fetch(`http://127.0.0.1:8000/imoveis/${id}/`);
 
     return await dados.json();
@@ -46,7 +72,7 @@ loadImoveis().then((dados) => {
     dados.forEach((imovel) => {
         const option = document.createElement('option');
         option.value = imovel.id;
-        option.textContent = imovel.endereco;
+        option.textContent = imovel.apelido_imovel;
         selectImovel.appendChild(option);
     });
 });
@@ -68,35 +94,45 @@ async function sendRequest(formData) {
         body: JSON.stringify(formData),
     });
 
-    return response.json();
+    return response;
 }
 
-const form = document.querySelector('form.contract-form');
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const submitBtn = document.querySelector(".submit-btn");
-    submitBtn.setAttribute("disabled", "true");
+window.addEventListener('DOMContentLoaded', () => {
+    const proprietario = getLoggedOwner();
 
-    const formData = {
-        id_inquilino: select.value,
-        id_imovel: selectImovel.value,
-        data_inicio: document.querySelector('#dataInicio').value,
-        data_fim: document.querySelector('#dataVencimento').value,
-        valor_aluguel: parseFloat(document.querySelector('#valorAluguel').value),
-        dia_vencimento: parseInt(document.querySelector('#diaVencimento').value),
-        id_proprietario: null // TODO: Get from session
-    };
+    if (!requireOwnerOrRedirect(proprietario)) {
+        window.location.href = '../login/';
+        return;
+    }
 
-    sendRequest(formData).then((response) => {
-        if (response.ok)
-            alert("Contrato criado com sucesso!");
-        else
-            alert(response.detail);
-    }).catch((error) => {
-        console.error(error);
-        alert("Erro ao criar contrato!");
-    }).finally(() => {
-        submitBtn.removeAttribute("disabled");
+    const form = document.querySelector('form.contract-form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = document.querySelector(".submit-btn");
+        submitBtn.setAttribute("disabled", "true");
+
+        const formData = {
+            id_inquilino: select.value,
+            id_imovel: selectImovel.value,
+            data_inicio: document.querySelector('#dataInicio').value,
+            data_fim: document.querySelector('#dataVencimento').value,
+            valor_aluguel: parseFloat(document.querySelector('#valorAluguel').value),
+            dia_vencimento: parseInt(document.querySelector('#diaVencimento').value),
+            id_proprietario: proprietario.id
+        };
+
+        sendRequest(formData).then((response) => {
+            if (response.ok) {
+                alert("Contrato criado com sucesso!");
+            } else {
+                alert("Erro ao criar contrato!");
+            }
+        }).catch((error) => {
+            console.error(error);
+            alert("Erro ao criar contrato!");
+        }).finally(() => {
+            submitBtn.removeAttribute("disabled");
+        });
     });
-});
 
+});
