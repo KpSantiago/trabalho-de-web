@@ -57,10 +57,9 @@ class PagamentosController {
 
         if (!pagamentos || pagamentos.length === 0) {
             tbody.innerHTML = '<tr><td colspan="10">Nenhum pagamento encontrado</td></tr>';
-            return;
+        } else {
+            tbody.innerHTML = pagamentos.map(pagamento => this.getPaymentRow(pagamento)).join('');
         }
-
-        tbody.innerHTML = pagamentos.map(pagamento => this.getPaymentRow(pagamento)).join('');
     }
 
     getPaymentRow(pagamento) {

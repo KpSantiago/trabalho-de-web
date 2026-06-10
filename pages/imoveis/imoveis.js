@@ -8,11 +8,9 @@ const state = {
     editingId: null,
     proprietario: null,
     isSubmitting: false,
-    currentPage: 0,
-    limit: 10,
-    totalPages: 0,
-    totalItems: 0,
 };
+
+const pagination = new PaginationManager((skip, limit) => loadImoveis(skip, limit));
 
 const form = document.getElementById('imovel-form');
 const tbody = document.getElementById('imoveis-tbody');
@@ -89,77 +87,25 @@ function setEditMode(imovel) {
 function renderTable() {
     if (!state.imoveis.length) {
         tbody.innerHTML = '<tr><td colspan="5">Nenhum imóvel cadastrado.</td></tr>';
-        return;
+    } else {
+        tbody.innerHTML = state.imoveis.map((imovel) => `
+            <tr>
+                <td>${escapeHtml(imovel.apelido_imovel)}</td>
+                <td>${escapeHtml(imovel.tipo_imovel)}</td>
+                <td>${formatCurrency(imovel.valor_aluguel_base)}</td>
+                <td><span class="badge ${getStatusBadgeClass(imovel.status)}">${escapeHtml(imovel.status)}</span></td>
+                <td>
+                    <button class="btn btn-small btn-edit" data-action="edit" data-id="${imovel.id}">Editar</button>
+                    <button class="btn btn-small btn-danger" data-action="delete" data-id="${imovel.id}">Excluir</button>
+                </td>
+            </tr>
+        `).join('');
     }
-
-    tbody.innerHTML = state.imoveis.map((imovel) => `
-        <tr>
-            <td>${escapeHtml(imovel.apelido_imovel)}</td>
-            <td>${escapeHtml(imovel.tipo_imovel)}</td>
-            <td>${formatCurrency(imovel.valor_aluguel_base)}</td>
-            <td><span class="badge ${getStatusBadgeClass(imovel.status)}">${escapeHtml(imovel.status)}</span></td>
-            <td>
-                <button class="btn btn-small btn-edit" data-action="edit" data-id="${imovel.id}">Editar</button>
-                <button class="btn btn-small btn-danger" data-action="delete" data-id="${imovel.id}">Excluir</button>
-            </td>
-        </tr>
-    `).join('');
 }
 
 
-function renderPagination(paginationData) {
-    const paginationContainer = document.querySelector('.pagination-container');
-    if (!paginationContainer) {
-        return;
-    }
 
-    state.totalPages = paginationData.pages;
-    state.totalItems = paginationData.total;
-
-    paginationContainer.innerHTML = `
-        <div class="pagination-info">
-            <span>Página ${state.currentPage + 1} de ${state.totalPages}</span>
-            <span>Total: ${state.totalItems} itens</span>
-        </div>
-        <div class="pagination-controls">
-            <select class="pagination-limit" id="pagination-limit">
-                <option value="10" ${state.limit === 10 ? 'selected' : ''}>10 por página</option>
-                <option value="20" ${state.limit === 20 ? 'selected' : ''}>20 por página</option>
-                <option value="50" ${state.limit === 50 ? 'selected' : ''}>50 por página</option>
-                <option value="100" ${state.limit === 100 ? 'selected' : ''}>100 por página</option>
-            </select>
-            <button class="btn btn-secondary btn-small" id="btn-first" ${!paginationData.previous ? 'disabled' : ''}>Primeira</button>
-            <button class="btn btn-secondary btn-small" id="btn-previous" ${!paginationData.previous ? 'disabled' : ''}>Anterior</button>
-            <button class="btn btn-secondary btn-small" id="btn-next" ${!paginationData.next ? 'disabled' : ''}>Próxima</button>
-            <button class="btn btn-secondary btn-small" id="btn-last" ${!paginationData.next ? 'disabled' : ''}>Última</button>
-        </div>
-    `;
-
-    document.getElementById('pagination-limit').addEventListener('change', (event) => {
-        state.limit = parseInt(event.target.value, 10);
-        state.currentPage = 0;
-        loadImoveis(0, state.limit).catch((error) => {
-            showFeedback(error.message, 'error');
-        });
-    });
-
-    document.getElementById('btn-first').addEventListener('click', () => goToPage(0));
-    document.getElementById('btn-previous').addEventListener('click', () => goToPage(state.currentPage - 1));
-    document.getElementById('btn-next').addEventListener('click', () => goToPage(state.currentPage + 1));
-    document.getElementById('btn-last').addEventListener('click', () => goToPage(state.totalPages - 1));
-}
-
-async function goToPage(page) {
-    if (page < 0 || page >= state.totalPages) {
-        return;
-    }
-
-    state.currentPage = page;
-    const skip = page * state.limit;
-    await loadImoveis(skip, state.limit);
-}
-
-async function loadImoveis(skip = 0, limit = state.limit) {
+async function loadImoveis(skip = 0, limit = pagination.getLimit()) {
     const ownerId = state.proprietario?.id;
     if (!ownerId) {
         throw new Error('Usuário não autenticado. Faça login novamente.');
@@ -169,9 +115,8 @@ async function loadImoveis(skip = 0, limit = state.limit) {
     const data = await request(`/imoveis/proprietario/${ownerId}?${params.toString()}`);
 
     state.imoveis = data.content;
-    state.currentPage = data.pages > 0 ? Math.floor(skip / limit) : 0;
     renderTable();
-    renderPagination(data);
+    pagination.render(data);
 }
 
 async function createImovel(data) {

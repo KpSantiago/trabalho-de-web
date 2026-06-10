@@ -68,9 +68,13 @@ class CriarContratoController {
     }
 
     populateInquilinoSelect(inquilinos) {
-        this.elements.inquilinoSelect.innerHTML = inquilinos.map(inquilino => 
-            `<option value="${inquilino.id}">${inquilino.nome}</option>`
-        ).join('');
+        this.elements.inquilinoSelect.innerHTML = '<option value="">Selecione um inquilino</option>';
+        inquilinos.forEach(inquilino => {
+            const option = document.createElement('option');
+            option.value = inquilino.id;
+            option.textContent = inquilino.nome;
+            this.elements.inquilinoSelect.appendChild(option);
+        });
     }
 
     async handleInquilinoChange() {
@@ -101,9 +105,13 @@ class CriarContratoController {
     }
 
     populateImovelSelect(imoveis) {
-        this.elements.imovelSelect.innerHTML = imoveis.map(imovel => 
-            `<option value="${imovel.id}">${imovel.apelido_imovel}</option>`
-        ).join('');
+        this.elements.imovelSelect.innerHTML = '<option value="">Selecione um imóvel</option>';
+        imoveis.forEach(imovel => {
+            const option = document.createElement('option');
+            option.value = imovel.id;
+            option.textContent = imovel.apelido_imovel;
+            this.elements.imovelSelect.appendChild(option);
+        });
     }
 
     async handleImovelChange() {

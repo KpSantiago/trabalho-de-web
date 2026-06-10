@@ -8,11 +8,9 @@ const state = {
     editingId: null,
     proprietario: null,
     isSubmitting: false,
-    currentPage: 0,
-    limit: 10,
-    totalPages: 0,
-    totalItems: 0,
 };
+
+const pagination = new PaginationManager((skip, limit) => loadInquilinos(skip, limit));
 
 const form = document.getElementById('inquilino-form');
 const tbody = document.getElementById('inquilinos-tbody');
@@ -105,77 +103,25 @@ function setEditMode(inquilino) {
 function renderTable() {
     if (!state.inquilinos.length) {
         tbody.innerHTML = '<tr><td colspan="6">Nenhum inquilino cadastrado.</td></tr>';
-        return;
+    } else {
+        tbody.innerHTML = state.inquilinos.map((inquilino) => `
+            <tr>
+                <td>${escapeHtml(inquilino.nome)}</td>
+                <td>${escapeHtml(inquilino.cpf)}</td>
+                <td>${escapeHtml(inquilino.email)}</td>
+                <td>${escapeHtml(inquilino.telefone)}</td>
+                <td>${formatCurrency(inquilino.renda_mensal)}</td>
+                <td>
+                    <button class="btn btn-small btn-edit" data-action="edit" data-id="${inquilino.id}">Editar</button>
+                    <button class="btn btn-small btn-danger" data-action="delete" data-id="${inquilino.id}">Excluir</button>
+                </td>
+            </tr>
+        `).join('');
     }
-
-    tbody.innerHTML = state.inquilinos.map((inquilino) => `
-        <tr>
-            <td>${escapeHtml(inquilino.nome)}</td>
-            <td>${escapeHtml(inquilino.cpf)}</td>
-            <td>${escapeHtml(inquilino.email)}</td>
-            <td>${escapeHtml(inquilino.telefone)}</td>
-            <td>${formatCurrency(inquilino.renda_mensal)}</td>
-            <td>
-                <button class="btn btn-small btn-edit" data-action="edit" data-id="${inquilino.id}">Editar</button>
-                <button class="btn btn-small btn-danger" data-action="delete" data-id="${inquilino.id}">Excluir</button>
-            </td>
-        </tr>
-    `).join('');
 }
 
-function renderPagination(paginationData) {
-    const paginationContainer = document.querySelector('.pagination-container');
-    if (!paginationContainer) {
-        return;
-    }
 
-    state.totalPages = paginationData.pages;
-    state.totalItems = paginationData.total;
-
-    paginationContainer.innerHTML = `
-        <div class="pagination-info">
-            <span>Página ${state.currentPage + 1} de ${state.totalPages}</span>
-            <span>Total: ${state.totalItems} itens</span>
-        </div>
-        <div class="pagination-controls">
-            <select class="pagination-limit" id="pagination-limit">
-                <option value="10" ${state.limit === 10 ? 'selected' : ''}>10 por página</option>
-                <option value="20" ${state.limit === 20 ? 'selected' : ''}>20 por página</option>
-                <option value="50" ${state.limit === 50 ? 'selected' : ''}>50 por página</option>
-                <option value="100" ${state.limit === 100 ? 'selected' : ''}>100 por página</option>
-            </select>
-            <button class="btn btn-secondary btn-small" id="btn-first" ${!paginationData.previous ? 'disabled' : ''}>Primeira</button>
-            <button class="btn btn-secondary btn-small" id="btn-previous" ${!paginationData.previous ? 'disabled' : ''}>Anterior</button>
-            <button class="btn btn-secondary btn-small" id="btn-next" ${!paginationData.next ? 'disabled' : ''}>Próxima</button>
-            <button class="btn btn-secondary btn-small" id="btn-last" ${!paginationData.next ? 'disabled' : ''}>Última</button>
-        </div>
-    `;
-
-    document.getElementById('pagination-limit').addEventListener('change', (event) => {
-        state.limit = parseInt(event.target.value, 10);
-        state.currentPage = 0;
-        loadInquilinos(0, state.limit).catch((error) => {
-            showFeedback(error.message, 'error');
-        });
-    });
-
-    document.getElementById('btn-first').addEventListener('click', () => goToPage(0));
-    document.getElementById('btn-previous').addEventListener('click', () => goToPage(state.currentPage - 1));
-    document.getElementById('btn-next').addEventListener('click', () => goToPage(state.currentPage + 1));
-    document.getElementById('btn-last').addEventListener('click', () => goToPage(state.totalPages - 1));
-}
-
-async function goToPage(page) {
-    if (page < 0 || page >= state.totalPages) {
-        return;
-    }
-
-    state.currentPage = page;
-    const skip = page * state.limit;
-    await loadInquilinos(skip, state.limit);
-}
-
-async function loadInquilinos(skip = 0, limit = state.limit) {
+async function loadInquilinos(skip = 0, limit = pagination.getLimit()) {
     const ownerId = state.proprietario?.id;
     if (!ownerId) {
         throw new Error('Usuário não autenticado. Faça login novamente.');
@@ -185,9 +131,8 @@ async function loadInquilinos(skip = 0, limit = state.limit) {
     const data = await request(`/inquilinos/proprietario/${ownerId}?${params.toString()}`);
 
     state.inquilinos = data.content;
-    state.currentPage = data.pages > 0 ? Math.floor(skip / limit) : 0;
     renderTable();
-    renderPagination(data);
+    pagination.render(data);
 }
 
 async function createInquilino(data) {
