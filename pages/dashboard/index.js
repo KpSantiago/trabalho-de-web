@@ -1,78 +1,101 @@
 const { getLoggedOwner } = window.AppSession;
 const { requireOwnerOrRedirect } = window.AppPage;
 
-const state = {
-    imoveis: [],
-    editingId: null,
-    proprietario: null,
-    isSubmitting: false,
-};
+class DashboardController {
+    constructor() {
+        this.state = {
+            proprietario: null,
+        };
+    }
 
-async function loadStatistics(proprietarioId) {
-    const data = await fetch(`http://127.0.0.1:8000/dashboard/estatisticas?id_proprietario=${proprietarioId}`);
-    
-    return data.json();    
-}
+    async initialize() {
+        this.state.proprietario = getLoggedOwner();
+        
+        if (!requireOwnerOrRedirect(this.state.proprietario, '/login.html')) {
+            return;
+        }
 
-async function loadAtividadeRecente(proprietarioId) {
-    const data = await fetch(`http://127.0.0.1:8000/dashboard/atividade-recente?id_proprietario=${proprietarioId}`);
-    
-    return data.json();    
-}
+        await Promise.all([
+            this.loadStatistics(),
+            this.loadRecentActivity(),
+            this.loadRecentPayments()
+        ]);
+    }
 
-async function loadPagamentos(proprietarioId) {
-    const data = await fetch(`http://127.0.0.1:8000/pagamentos?id_proprietario=${proprietarioId}&limit=4&skip=0&order_by=criado_em,numero_parcela&order_direction=desc`);
-    
-    return data.json();    
-}
+    async loadStatistics() {
+        try {
+            const data = await window.AppHttp.request('/dashboard/estatisticas?id_proprietario=' + this.state.proprietario.id);
+            this.renderStatistics(data);
+        } catch (error) {
+            console.error('Erro ao carregar estatísticas:', error);
+        }
+    }
 
-function setupStatistics(proprietarioId) {
-    loadStatistics(proprietarioId).then(data => {
+    async loadRecentActivity() {
+        try {
+            const data = await window.AppHttp.request('/dashboard/atividade-recente?id_proprietario=' + this.state.proprietario.id);
+            this.renderRecentActivity(data);
+        } catch (error) {
+            console.error('Erro ao carregar atividade recente:', error);
+        }
+    }
+
+    async loadRecentPayments() {
+        try {
+            const params = new URLSearchParams({
+                id_proprietario: this.state.proprietario.id,
+                limit: 4,
+                skip: 0,
+                order_by: 'criado_em,numero_parcela',
+                order_direction: 'desc'
+            });
+            const data = await window.AppHttp.request('/pagamentos?' + params.toString());
+            this.renderPayments(data.content);
+        } catch (error) {
+            console.error('Erro ao carregar pagamentos:', error);
+        }
+    }
+
+    renderStatistics(data) {
         document.querySelector('#imoveis_vagos').textContent = data.imoveis_disponiveis;
         document.querySelector('#imoveis_alugados').textContent = data.imoveis_alugados;
         document.querySelector('#pagamentos_pendentes').textContent = data.pagamentos_pendentes;
-    }).catch(err => {
-        console.error(err);
-    });
-}
+    }
 
-function setupAtividadeRecente(proprietarioId) {
-    loadAtividadeRecente(proprietarioId).then(data => {
+    renderRecentActivity(data) {
         document.querySelector('#atividade_contrato').textContent = data.imovel_alugado;
         document.querySelector('#atividade_imovel').textContent = data.imovel_disponivel;
         document.querySelector('#atividade_inquilino').textContent = data.inquilino;
-    }).catch(err => {
-        console.error("Erro ao carregar atividade recente:", err);
-    });
-}
+    }
 
-function setupPagamentos(proprietarioId) {
-    loadPagamentos(proprietarioId).then(data => {
+    renderPayments(pagamentos) {
         const tbody = document.querySelector('#pagamentos-tbody');
-        data.content.forEach(pagamento => {
-            const row = document.createElement('tr');
-            const badgeType = pagamento.status === 'Pendente' ? 'warning' : pagamento.status === 'Pago' ? 'success' : 'error';
-            row.innerHTML = `
-                <td>${pagamento.inquilino.nome}</td>
-                <td>${pagamento.imovel.apelido_imovel}</td>
-                <td>${pagamento.valor_total}</td>
-                <td><span class="badge ${badgeType}">${pagamento.status}</span></td>
-                <td><a class="btn btn-secondary btn-small" href="../pagamento/?id=${pagamento.id}">Acessar</a></td>
+        tbody.innerHTML = pagamentos.map(pagamento => {
+            const badgeType = this.getBadgeType(pagamento.status);
+            return `
+                <tr>
+                    <td>${pagamento.inquilino.nome}</td>
+                    <td>${pagamento.imovel.apelido_imovel}</td>
+                    <td>${window.AppUtils.formatCurrency(pagamento.valor_total)}</td>
+                    <td><span class="badge ${badgeType}">${pagamento.status}</span></td>
+                    <td><a class="btn btn-secondary btn-small" href="../pagamento/?id=${pagamento.id}">Acessar</a></td>
+                </tr>
             `;
-            tbody.appendChild(row);
-        });
-    }).catch(err => {
-        console.error("Erro ao carregar pagamentos:", err);
-    });
+        }).join('');
+    }
+
+    getBadgeType(status) {
+        const badgeMap = {
+            'Pendente': 'warning',
+            'Pago': 'success',
+            'Atrasado': 'error'
+        };
+        return badgeMap[status] || 'error';
+    }
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-    state.proprietario = getLoggedOwner();
-    
-    requireOwnerOrRedirect(state.proprietario, '/login.html');
-
-    setupStatistics(state.proprietario.id);
-    setupAtividadeRecente(state.proprietario.id);
-    setupPagamentos(state.proprietario.id);
+    const dashboard = new DashboardController();
+    await dashboard.initialize();
 });
 

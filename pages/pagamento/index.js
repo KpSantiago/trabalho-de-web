@@ -1,85 +1,143 @@
 const { getLoggedOwner } = window.AppSession;
 const { requireOwnerOrRedirect } = window.AppPage;
 
-async function loadPagamento(id) {
-    const response = await fetch(`http://127.0.0.1:8000/pagamentos/${id}`);
-  
-    return response.json();
-}
-
-async function confirmarPagamento(id) {
-    const response = await fetch(`http://127.0.0.1:8000/pagamentos/${id}/confirmar`, {
-        method: 'PUT'
-    });
-    
-    return response.json();
-}
-
-document.querySelector('.btn-confirm').addEventListener('click', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    
-    confirmarPagamento(id).then(() => {
-        window.location.reload();
-    }).catch(() => {
-        alert('Erro ao confirmar pagamento');
-    });
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-    const proprietario = getLoggedOwner();
-    
-    if (!requireOwnerOrRedirect(proprietario)) {
-        return;
+class PagamentoController {
+    constructor() {
+        this.state = {
+            proprietario: null,
+            pagamentoId: null,
+            pagamento: null,
+        };
+        this.elements = {};
     }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    async initialize() {
+        this.state.proprietario = getLoggedOwner();
+        
+        if (!requireOwnerOrRedirect(this.state.proprietario)) {
+            return;
+        }
 
-    if (!id) {
+        this.state.pagamentoId = this.getPagamentoIdFromUrl();
+        
+        if (!this.state.pagamentoId) {
+            this.handleMissingId();
+            return;
+        }
+
+        this.cacheElements();
+        this.setupEventListeners();
+        await this.loadPagamento();
+    }
+
+    getPagamentoIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('id');
+    }
+
+    handleMissingId() {
         window.location.href = '../pagamentos/';
         alert('ID do pagamento não fornecido');
-        return;
     }
-    
-    loadPagamento(id).then(pagamento => {
-        const diasAtraso = Math.floor((new Date() - new Date(pagamento.data_vencimento)) / (1000 * 60 * 60 * 24))
 
-        document.querySelector('#nome-inquilino').textContent = pagamento.inquilino.nome;
-        document.querySelector('#cpf-inquilino').textContent = pagamento.inquilino.cpf;
-        document.querySelector('#telefone-inquilino').textContent = pagamento.inquilino.telefone;
-        document.querySelector('#imovel').textContent = pagamento.imovel.apelido_imovel;
-        document.querySelector('#endereco').textContent = pagamento.imovel.endereco;
-        document.querySelector('#parcela').textContent = pagamento.numero_parcela;
-        document.querySelector('#vencimento').textContent = new Date(pagamento.data_vencimento).toLocaleDateString('pt-BR');
-        document.querySelector('#valor-original').textContent = pagamento.valor_original.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        document.querySelector('#multa').textContent = pagamento.multa.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        document.querySelector('#juros').textContent = pagamento.juros.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        document.querySelector('#valor-total').textContent = pagamento.valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        const status = document.querySelector('#status');
-        status.textContent = pagamento.status.toUpperCase();
+    cacheElements() {
+        this.elements = {
+            nomeInquilino: document.querySelector('#nome-inquilino'),
+            cpfInquilino: document.querySelector('#cpf-inquilino'),
+            telefoneInquilino: document.querySelector('#telefone-inquilino'),
+            imovel: document.querySelector('#imovel'),
+            endereco: document.querySelector('#endereco'),
+            parcela: document.querySelector('#parcela'),
+            vencimento: document.querySelector('#vencimento'),
+            valorOriginal: document.querySelector('#valor-original'),
+            multa: document.querySelector('#multa'),
+            juros: document.querySelector('#juros'),
+            valorTotal: document.querySelector('#valor-total'),
+            status: document.querySelector('#status'),
+            diasAtraso: document.querySelector('#dias-atraso'),
+            btnConfirm: document.querySelector('.btn-confirm'),
+        };
+    }
 
-        const pAtraso = document.querySelector('#dias-atraso');
-        pAtraso.textContent = diasAtraso > 0 ? diasAtraso + ' dias de atraso' : Math.abs(diasAtraso) + ' dias até a data de vencimento';
+    setupEventListeners() {
+        this.elements.btnConfirm?.addEventListener('click', () => this.handleConfirmarPagamento());
+    }
+
+    async loadPagamento() {
+        try {
+            const pagamento = await window.AppHttp.request(`/pagamentos/${this.state.pagamentoId}`);
+            this.state.pagamento = pagamento;
+            this.renderPagamento(pagamento);
+        } catch (error) {
+            console.error('Erro ao carregar pagamento:', error);
+        }
+    }
+
+    renderPagamento(pagamento) {
+        const diasAtraso = this.calculateDaysOverdue(pagamento.data_vencimento);
+        
+        this.elements.nomeInquilino.textContent = pagamento.inquilino.nome;
+        this.elements.cpfInquilino.textContent = pagamento.inquilino.cpf;
+        this.elements.telefoneInquilino.textContent = pagamento.inquilino.telefone;
+        this.elements.imovel.textContent = pagamento.imovel.apelido_imovel;
+        this.elements.endereco.textContent = pagamento.imovel.endereco;
+        this.elements.parcela.textContent = pagamento.numero_parcela;
+        this.elements.vencimento.textContent = this.formatDate(pagamento.data_vencimento);
+        this.elements.valorOriginal.textContent = window.AppUtils.formatCurrency(pagamento.valor_original);
+        this.elements.multa.textContent = window.AppUtils.formatCurrency(pagamento.multa);
+        this.elements.juros.textContent = window.AppUtils.formatCurrency(pagamento.juros);
+        this.elements.valorTotal.textContent = window.AppUtils.formatCurrency(pagamento.valor_total);
+        
+        this.elements.status.textContent = pagamento.status.toUpperCase();
+        this.updateStatusDisplay(pagamento, diasAtraso);
+    }
+
+    calculateDaysOverdue(dataVencimento) {
+        return Math.floor((new Date() - new Date(dataVencimento)) / (1000 * 60 * 60 * 24));
+    }
+
+    updateStatusDisplay(pagamento, diasAtraso) {
+        this.elements.diasAtraso.textContent = diasAtraso > 0 
+            ? `${diasAtraso} dias de atraso` 
+            : `${Math.abs(diasAtraso)} dias até a data de vencimento`;
 
         if (diasAtraso > 0) {
-            status.classList.add('error');
-            pAtraso.style.color = 'var(--error)';
+            this.elements.status.classList.add('error');
+            this.elements.diasAtraso.style.color = 'var(--error)';
         } else {
-            status.classList.add('warning');
-            pAtraso.style.color = 'var(--warning)';
+            this.elements.status.classList.add('warning');
+            this.elements.diasAtraso.style.color = 'var(--warning)';
         }
 
         if (pagamento.status.toLowerCase() === 'pago') {
-            document.querySelector('.btn-confirm').setAttribute('disabled', 'true');
-            document.querySelector('.btn-confirm').style.opacity = '0.5';
+            this.elements.btnConfirm.setAttribute('disabled', 'true');
+            this.elements.btnConfirm.style.opacity = '0.5';
 
-            status.classList.remove('warning');
-            status.classList.remove('error');
-            status.classList.add('success');
+            this.elements.status.classList.remove('warning');
+            this.elements.status.classList.remove('error');
+            this.elements.status.classList.add('success');
         }
+    }
 
-    }).catch(error => {
-        console.error('Error loading pagamento:', error);
-    });
-})
+    async handleConfirmarPagamento() {
+        try {
+            await window.AppHttp.request(`/pagamentos/${this.state.pagamentoId}/confirmar`, {
+                method: 'PUT',
+                body: JSON.stringify({})
+            });
+            window.location.reload();
+        } catch (error) {
+            console.error('Erro ao confirmar pagamento:', error);
+            alert('Erro ao confirmar pagamento');
+        }
+    }
+
+    formatDate(dateString) {
+        return new Date(dateString).toLocaleDateString('pt-BR');
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const controller = new PagamentoController();
+    controller.initialize();
+});

@@ -1,93 +1,142 @@
-async function loadContrato(id) {
-    const data = await fetch(`http://127.0.0.1:8000/contratos/${id}`);
+class ContratoController {
+    constructor() {
+        this.state = {
+            contratoId: null,
+            contrato: null,
+        };
+        this.elements = {};
+    }
 
-    return await data.json();
-}
-
-async function encerrarContrato(id) {
-    const data = await fetch(`http://127.0.0.1:8000/contratos/${id}/encerrar`, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-
-    return await data.json();
-}
-
-function setupContrato(id) {
-    loadContrato(id).then(contrato => {
-        const dataAtual = new Date();
-        const dataFim = new Date(contrato.data_fim);
-        let diasRestantes = Math.ceil((dataFim - dataAtual) / (1000 * 60 * 60 * 24));
-        diasRestantes = diasRestantes < 0 ? 0 : diasRestantes;
-
-        document.querySelector('.value-rent').textContent = contrato.valor_aluguel.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        document.querySelector('.due-day').textContent = contrato.dia_vencimento;
-        document.querySelector('.start-date').textContent = new Date(contrato.data_inicio).toLocaleDateString('pt-BR');
-        document.querySelector('.end-date').textContent = dataFim.toLocaleDateString('pt-BR');
-        document.querySelector('.id-contract').textContent = contrato.id;
-        document.querySelector('.name-tenant').textContent = contrato.inquilino.nome;
-        document.querySelector('.cpf-tenant').textContent = contrato.inquilino.cpf;
-        document.querySelector('.phone-tenant').textContent = contrato.inquilino.telefone;
-        document.querySelector('.name-property').textContent = contrato.imovel.apelido_imovel;
-        document.querySelector('.address-property').textContent = contrato.imovel.endereco;
-        document.querySelector('.status-property').textContent = contrato.imovel.status;
-        document.querySelector('.badge').textContent = contrato.status;
-
-        const paragraph = document.querySelector('.days-left');
-        paragraph.textContent = `Vence em ${diasRestantes} dias`;
+    async initialize() {
+        this.state.contratoId = this.getContractIdFromUrl();
         
-        if (diasRestantes <= 30 || contrato.status.toUpperCase() === 'ENCERRADO') {
-            document.querySelector('.badge').className = 'badge warning';
-            if (contrato.status.toUpperCase() === 'ENCERRADO') {
-                paragraph.textContent = 'Contrato Encerrado';
-            }
-            paragraph.style.color = 'var(--warning)';
-        } else if (diasRestantes <= 0 || contrato.status.toUpperCase() === 'CANCELADO') {
-            document.querySelector('.badge').className = 'badge error';
-            if (contrato.status.toUpperCase() === 'CANCELADO') {
-                paragraph.textContent = 'Contrato Cancelado';
-            }
-            paragraph.style.color = 'var(--error)';
-        } else {
-            document.querySelector('.badge').className = 'badge success';
-            paragraph.style.color = 'var(--success)';
+        if (!this.state.contratoId) {
+            this.handleMissingId();
+            return;
         }
-    }).catch(error => {
-        console.error("Erro ao carregar contrato: ", error);
-    });
-}
 
-function setupEventListeners() {
-    const btnEncerrar = document.getElementById('btn-encerrar');
+        this.cacheElements();
+        this.setupEventListeners();
+        await this.loadContrato();
+    }
 
-    btnEncerrar.addEventListener('click', () => {
+    getContractIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
+        return params.get('id');
+    }
+
+    handleMissingId() {
+        console.error('ID do contrato não fornecido');
+        alert('ID do contrato não fornecido');
+        window.location.href = '/trabalho-de-web/pages/contratos';
+    }
+
+    cacheElements() {
+        this.elements = {
+            valueRent: document.querySelector('.value-rent'),
+            dueDay: document.querySelector('.due-day'),
+            startDate: document.querySelector('.start-date'),
+            endDate: document.querySelector('.end-date'),
+            idContract: document.querySelector('.id-contract'),
+            nameTenant: document.querySelector('.name-tenant'),
+            cpfTenant: document.querySelector('.cpf-tenant'),
+            phoneTenant: document.querySelector('.phone-tenant'),
+            nameProperty: document.querySelector('.name-property'),
+            addressProperty: document.querySelector('.address-property'),
+            statusProperty: document.querySelector('.status-property'),
+            badge: document.querySelector('.badge'),
+            daysLeft: document.querySelector('.days-left'),
+            btnEncerrar: document.getElementById('btn-encerrar'),
+        };
+    }
+
+    setupEventListeners() {
+        this.elements.btnEncerrar?.addEventListener('click', () => this.handleEncerrarContrato());
+    }
+
+    async loadContrato() {
+        try {
+            const contrato = await window.AppHttp.request(`/contratos/${this.state.contratoId}`);
+            this.state.contrato = contrato;
+            this.renderContrato(contrato);
+        } catch (error) {
+            console.error('Erro ao carregar contrato:', error);
+        }
+    }
+
+    renderContrato(contrato) {
+        const diasRestantes = this.calculateDaysRemaining(contrato.data_fim);
         
-        encerrarContrato(id).then(() => {
-            window.location.href = "/trabalho-de-web/pages/contratos";
-        }).catch(error => {
-            console.error("Erro ao encerrar contrato: ", error);
-            alert("Erro ao encerrar contrato");
-        });
-    });
+        this.elements.valueRent.textContent = window.AppUtils.formatCurrency(contrato.valor_aluguel);
+        this.elements.dueDay.textContent = contrato.dia_vencimento;
+        this.elements.startDate.textContent = this.formatDate(contrato.data_inicio);
+        this.elements.endDate.textContent = this.formatDate(contrato.data_fim);
+        this.elements.idContract.textContent = contrato.id;
+        this.elements.nameTenant.textContent = contrato.inquilino.nome;
+        this.elements.cpfTenant.textContent = contrato.inquilino.cpf;
+        this.elements.phoneTenant.textContent = contrato.inquilino.telefone;
+        this.elements.nameProperty.textContent = contrato.imovel.apelido_imovel;
+        this.elements.addressProperty.textContent = contrato.imovel.endereco;
+        this.elements.statusProperty.textContent = contrato.imovel.status;
+        this.elements.badge.textContent = contrato.status;
+
+        this.updateStatusDisplay(contrato, diasRestantes);
+    }
+
+    calculateDaysRemaining(dataFim) {
+        const dataAtual = new Date();
+        const dataFimDate = new Date(dataFim);
+        let diasRestantes = Math.ceil((dataFimDate - dataAtual) / (1000 * 60 * 60 * 24));
+        return diasRestantes < 0 ? 0 : diasRestantes;
+    }
+
+    updateStatusDisplay(contrato, diasRestantes) {
+        const statusUpper = contrato.status.toUpperCase();
+        
+        if (diasRestantes <= 30 || statusUpper === 'ENCERRADO') {
+            this.elements.badge.className = 'badge warning';
+            if (statusUpper === 'ENCERRADO') {
+                this.elements.daysLeft.textContent = 'Contrato Encerrado';
+            } else {
+                this.elements.daysLeft.textContent = `Vence em ${diasRestantes} dias`;
+            }
+            this.elements.daysLeft.style.color = 'var(--warning)';
+        } else if (diasRestantes <= 0 || statusUpper === 'CANCELADO') {
+            this.elements.badge.className = 'badge error';
+            if (statusUpper === 'CANCELADO') {
+                this.elements.daysLeft.textContent = 'Contrato Cancelado';
+            } else {
+                this.elements.daysLeft.textContent = `Vence em ${diasRestantes} dias`;
+            }
+            this.elements.daysLeft.style.color = 'var(--error)';
+        } else {
+            this.elements.badge.className = 'badge success';
+            this.elements.daysLeft.textContent = `Vence em ${diasRestantes} dias`;
+            this.elements.daysLeft.style.color = 'var(--success)';
+        }
+    }
+
+    async handleEncerrarContrato() {
+        try {
+            await window.AppHttp.request(`/contratos/${this.state.contratoId}/encerrar`, {
+                method: 'POST',
+                body: JSON.stringify({})
+            });
+            window.location.href = '/trabalho-de-web/pages/contratos';
+        } catch (error) {
+            console.error('Erro ao encerrar contrato:', error);
+            alert('Erro ao encerrar contrato');
+        }
+    }
+
+    formatDate(dateString) {
+        return new Date(dateString).toLocaleDateString('pt-BR');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    
-    if (!id) {
-        console.error("ID do contrato não fornecido");
-        window.location.href = "/trabalho-de-web/pages/contratos";
-        alert("ID do contrato não fornecido");
-        return;
-    }
-
-    setupContrato(id);
-    setupEventListeners();
+    const controller = new ContratoController();
+    controller.initialize();
 });
 
 

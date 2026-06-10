@@ -1,138 +1,163 @@
 const { getLoggedOwner } = window.AppSession;
 const { requireOwnerOrRedirect } = window.AppPage;
 
-// INQUILINOS
-async function loadInquilinos() {
-    const proprietario = getLoggedOwner();
-
-    if (!requireOwnerOrRedirect(proprietario)) {
-        return;
+class CriarContratoController {
+    constructor() {
+        this.state = {
+            proprietario: null,
+            selectedInquilino: null,
+            selectedImovel: null,
+        };
+        this.elements = {
+            inquilinoSelect: null,
+            imovelSelect: null,
+            form: null,
+            submitBtn: null,
+            cpfInput: null,
+            enderecoInput: null,
+        };
     }
 
-    const dados = await fetch(`http://127.0.0.1:8000/inquilinos/proprietario/${proprietario.id}`);
+    async initialize() {
+        this.state.proprietario = getLoggedOwner();
+        
+        if (!requireOwnerOrRedirect(this.state.proprietario)) {
+            window.location.href = '../login/';
+            return;
+        }
 
-    return await dados.json();
-}
-
-async function loadInquilinoById(id) {
-    const proprietario = getLoggedOwner();
-
-    if (!requireOwnerOrRedirect(proprietario)) {
-        return;
-    }
-    const dados = await fetch(`http://127.0.0.1:8000/inquilinos/${id}/`);
-
-    return await dados.json();
-}
-
-const select = document.querySelector('select#inquilino');
-loadInquilinos().then((dados) => {
-    dados.forEach((inquilino) => {
-        const option = document.createElement('option');
-        option.value = inquilino.id;
-        option.textContent = inquilino.nome;
-        select.appendChild(option);
-    });
-});
-
-select.addEventListener('change', () => {
-    loadInquilinoById(select.value).then((dados) => {
-        document.querySelector('#cpf').value = dados.cpf;
-    });
-});
-
-
-// IMÓVEIS
-async function loadImoveis() {
-    const proprietario = getLoggedOwner();
-
-    if (!requireOwnerOrRedirect(proprietario)) {
-        return;
+        this.cacheElements();
+        this.setupEventListeners();
+        
+        await Promise.all([
+            this.loadInquilinos(),
+            this.loadImoveis()
+        ]);
     }
 
-    const dados = await fetch(`http://127.0.0.1:8000/imoveis/proprietario/${proprietario.id}`);
-
-    return await dados.json();
-}
-
-async function loadImovelById(id) {
-    const proprietario = getLoggedOwner();
-
-    if (!requireOwnerOrRedirect(proprietario)) {
-        return;
+    cacheElements() {
+        this.elements.inquilinoSelect = document.querySelector('select#inquilino');
+        this.elements.imovelSelect = document.querySelector('select#imovel');
+        this.elements.form = document.querySelector('form.contract-form');
+        this.elements.submitBtn = document.querySelector('.submit-btn');
+        this.elements.cpfInput = document.querySelector('#cpf');
+        this.elements.enderecoInput = document.querySelector('#endereco');
     }
 
-    const dados = await fetch(`http://127.0.0.1:8000/imoveis/${id}/`);
-
-    return await dados.json();
-}
-
-const selectImovel = document.querySelector('select#imovel');
-loadImoveis().then((dados) => {
-    dados.forEach((imovel) => {
-        const option = document.createElement('option');
-        option.value = imovel.id;
-        option.textContent = imovel.apelido_imovel;
-        selectImovel.appendChild(option);
-    });
-});
-
-selectImovel.addEventListener('change', () => {
-    loadImovelById(selectImovel.value).then((dados) => {
-        document.querySelector('#endereco').value = dados.endereco;
-    });
-});
-
-
-// FORMULÁRIO
-async function sendRequest(formData) {
-    const response = await fetch("http://127.0.0.1:8000/contratos/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-    });
-
-    return response;
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    const proprietario = getLoggedOwner();
-
-    if (!requireOwnerOrRedirect(proprietario)) {
-        window.location.href = '../login/';
-        return;
+    setupEventListeners() {
+        this.elements.inquilinoSelect.addEventListener('change', () => this.handleInquilinoChange());
+        this.elements.imovelSelect.addEventListener('change', () => this.handleImovelChange());
+        this.elements.form.addEventListener('submit', (e) => this.handleFormSubmit(e));
     }
 
-    const form = document.querySelector('form.contract-form');
-    form.addEventListener('submit', (e) => {
+    async loadInquilinos() {
+        try {
+            const inquilinos = await window.AppHttp.request(`/inquilinos/proprietario/${this.state.proprietario.id}`);
+            this.populateInquilinoSelect(inquilinos);
+        } catch (error) {
+            console.error('Erro ao carregar inquilinos:', error);
+        }
+    }
+
+    async loadInquilinoById(id) {
+        try {
+            return await window.AppHttp.request(`/inquilinos/${id}/`);
+        } catch (error) {
+            console.error('Erro ao carregar inquilino:', error);
+        }
+    }
+
+    populateInquilinoSelect(inquilinos) {
+        this.elements.inquilinoSelect.innerHTML = inquilinos.map(inquilino => 
+            `<option value="${inquilino.id}">${inquilino.nome}</option>`
+        ).join('');
+    }
+
+    async handleInquilinoChange() {
+        const inquilinoId = this.elements.inquilinoSelect.value;
+        if (!inquilinoId) return;
+
+        const inquilino = await this.loadInquilinoById(inquilinoId);
+        if (inquilino) {
+            this.elements.cpfInput.value = inquilino.cpf;
+        }
+    }
+
+    async loadImoveis() {
+        try {
+            const imoveis = await window.AppHttp.request(`/imoveis/proprietario/${this.state.proprietario.id}`);
+            this.populateImovelSelect(imoveis);
+        } catch (error) {
+            console.error('Erro ao carregar imóveis:', error);
+        }
+    }
+
+    async loadImovelById(id) {
+        try {
+            return await window.AppHttp.request(`/imoveis/${id}/`);
+        } catch (error) {
+            console.error('Erro ao carregar imóvel:', error);
+        }
+    }
+
+    populateImovelSelect(imoveis) {
+        this.elements.imovelSelect.innerHTML = imoveis.map(imovel => 
+            `<option value="${imovel.id}">${imovel.apelido_imovel}</option>`
+        ).join('');
+    }
+
+    async handleImovelChange() {
+        const imovelId = this.elements.imovelSelect.value;
+        if (!imovelId) return;
+
+        const imovel = await this.loadImovelById(imovelId);
+        if (imovel) {
+            this.elements.enderecoInput.value = imovel.endereco;
+        }
+    }
+
+    async handleFormSubmit(e) {
         e.preventDefault();
-        const submitBtn = document.querySelector(".submit-btn");
-        submitBtn.setAttribute("disabled", "true");
+        this.setSubmitting(true);
 
-        const formData = {
-            id_inquilino: select.value,
-            id_imovel: selectImovel.value,
+        const formData = this.getFormData();
+
+        try {
+            await window.AppHttp.request('/contratos', {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            });
+            alert('Contrato criado com sucesso!');
+        } catch (error) {
+            console.error('Erro ao criar contrato:', error);
+            alert('Erro ao criar contrato!');
+        } finally {
+            this.setSubmitting(false);
+        }
+    }
+
+    getFormData() {
+        return {
+            id_inquilino: this.elements.inquilinoSelect.value,
+            id_imovel: this.elements.imovelSelect.value,
             data_inicio: document.querySelector('#dataInicio').value,
             data_fim: document.querySelector('#dataVencimento').value,
             valor_aluguel: parseFloat(document.querySelector('#valorAluguel').value),
             dia_vencimento: parseInt(document.querySelector('#diaVencimento').value),
-            id_proprietario: proprietario.id
+            id_proprietario: this.state.proprietario.id
         };
+    }
 
-        sendRequest(formData).then((response) => {
-            if (response.ok) {
-                alert("Contrato criado com sucesso!");
-            } else {
-                alert("Erro ao criar contrato!");
-            }
-        }).catch((error) => {
-            console.error(error);
-            alert("Erro ao criar contrato!");
-        }).finally(() => {
-            submitBtn.removeAttribute("disabled");
-        });
-    });
+    setSubmitting(isSubmitting) {
+        if (isSubmitting) {
+            this.elements.submitBtn.setAttribute('disabled', 'true');
+        } else {
+            this.elements.submitBtn.removeAttribute('disabled');
+        }
+    }
+}
 
+window.addEventListener('DOMContentLoaded', () => {
+    const controller = new CriarContratoController();
+    controller.initialize();
 });
