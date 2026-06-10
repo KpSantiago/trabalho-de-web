@@ -40,7 +40,9 @@ async function loadPayments(skip = 0, limit = 10) {
     const params = new URLSearchParams({
         id_proprietario: proprietario.id,
         skip: skip,
-        limit: limit
+        limit: limit,
+        order_by: 'numero_percela',
+        order_direction: 'desc'
     });
     const response = await fetch(`http://127.0.0.1:8000/pagamentos?${params.toString()}`);
     
