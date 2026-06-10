@@ -46,7 +46,7 @@ class DashboardController {
                 id_proprietario: this.state.proprietario.id,
                 limit: 4,
                 skip: 0,
-                order_by: 'criado_em,numero_parcela',
+                order_by: 'criado_em',
                 order_direction: 'desc'
             });
             const data = await window.AppHttp.request('/pagamentos?' + params.toString());
